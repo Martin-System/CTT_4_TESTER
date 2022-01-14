@@ -1,6 +1,6 @@
 ﻿namespace CTT_4_TESTER
 {
-    partial class P4_CTT_TEST
+    partial class P4CttTestForm
     {
         /// <summary>
         /// Variable nécessaire au concepteur.
@@ -99,6 +99,7 @@
             this.comboBoxComGolden.Name = "comboBoxComGolden";
             this.comboBoxComGolden.Size = new System.Drawing.Size(121, 21);
             this.comboBoxComGolden.TabIndex = 102;
+            this.comboBoxComGolden.SelectedIndexChanged += new System.EventHandler(this.comboBoxComPortGolden_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -161,6 +162,7 @@
             this.comboBoxTenma.Name = "comboBoxTenma";
             this.comboBoxTenma.Size = new System.Drawing.Size(121, 21);
             this.comboBoxTenma.TabIndex = 95;
+            this.comboBoxTenma.SelectedIndexChanged += new System.EventHandler(this.comboBoxComPortTenmaToCHeck_SelectedIndexChanged);
             // 
             // label12
             // 
@@ -219,6 +221,7 @@
             this.textBoxSn.Name = "textBoxSn";
             this.textBoxSn.Size = new System.Drawing.Size(46, 20);
             this.textBoxSn.TabIndex = 88;
+            this.textBoxSn.TextChanged += new System.EventHandler(this.textBoxSn_TextChanged);
             // 
             // buttonStart
             // 
@@ -273,6 +276,7 @@
             this.comboBoxComPortToTest.Name = "comboBoxComPortToTest";
             this.comboBoxComPortToTest.Size = new System.Drawing.Size(121, 21);
             this.comboBoxComPortToTest.TabIndex = 82;
+            this.comboBoxComPortToTest.SelectedIndexChanged += new System.EventHandler(this.comboBoxComPortTenmaToCHeck_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -283,7 +287,7 @@
             this.label2.TabIndex = 81;
             this.label2.Text = "COM Port PCB à tester ";
             // 
-            // P4_CTT_TEST
+            // P4CttTestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -314,7 +318,7 @@
             this.Controls.Add(this.textBoxUartLog);
             this.Controls.Add(this.comboBoxComPortToTest);
             this.Controls.Add(this.label2);
-            this.Name = "P4_CTT_TEST";
+            this.Name = "P4CttTestForm";
             this.Text = "P4 CTT 4 Test";
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -33,8 +33,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PP_COM_Wrapper">
+      <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Cypress\Programmer\PP_COM_Wrapper.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,16 +53,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="P4_CTT_TEST.cs">
+    <Compile Include="MsSerialPort.cs" />
+    <Compile Include="P4CttTestForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="P4_CTT_TEST.Designer.cs">
-      <DependentUpon>P4_CTT_TEST.cs</DependentUpon>
+    <Compile Include="P4CttTestForm.Designer.cs">
+      <DependentUpon>P4CttTestForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="P4Program.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="P4_CTT_TEST.resx">
-      <DependentUpon>P4_CTT_TEST.cs</DependentUpon>
+    <Compile Include="Tenma.cs" />
+    <Compile Include="Version.cs" />
+    <EmbeddedResource Include="P4CttTestForm.resx">
+      <DependentUpon>P4CttTestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

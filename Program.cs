@@ -16,7 +16,7 @@ namespace CTT_4_TESTER
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new P4_CTT_TEST());
+            Application.Run(new P4CttTestForm());
         }
     }
 }

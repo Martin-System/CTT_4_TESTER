@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO.Ports;
 
-namespace P4_TestCollar
+namespace CTT_4_TESTER
 {
     class MsSerialPort
     {
@@ -14,7 +14,7 @@ namespace P4_TestCollar
         String error = null;
         int nbrRetryCmdUart = 5;
         TextBox tboxSerialInOut;
-        P4CollarTestForm parentForm;
+        P4CttTestForm parentForm;
 
         public MsSerialPort(string portName)
         {
@@ -22,7 +22,7 @@ namespace P4_TestCollar
             // Allow the user to set the appropriate properties.
             _serialPort.PortName = portName;
         }
-        public MsSerialPort(TextBox tInOutBox, P4CollarTestForm parent)
+        public MsSerialPort(TextBox tInOutBox, P4CttTestForm parent)
         {
             init();
             // Allow the user to set the appropriate properties.
