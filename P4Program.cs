@@ -125,7 +125,7 @@ namespace CTT_4_TESTER
             int hr;
 
             //Setup Power - "3.3V" and internal for reset mode
-            pp.SetPowerVoltage("3.3", out m_sLastError);
+            pp.SetPowerVoltage("3.0", out m_sLastError);
             hr = pp.PowerOn(out m_sLastError);
             if (!SUCCEEDED(hr)) return hr;
 
@@ -133,7 +133,7 @@ namespace CTT_4_TESTER
             hr = pp.SetProtocol(enumInterfaces.SWD, out m_sLastError); //SWD-protocol
             if (!SUCCEEDED(hr)) return hr;
             //For MiniProg3 - Set protocol, connector and frequency (do not check result, since it will fail for TTBridge - not supported)
-            pp.SetProtocolConnector(0, out m_sLastError); //5-pin connector
+            pp.SetProtocolConnector(1, out m_sLastError); //5-pin connector
             pp.SetProtocolClock(enumFrequencies.FREQ_03_0, out m_sLastError); //3.0 MHz clock on SWD bus
 
             return hr;

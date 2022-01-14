@@ -512,9 +512,10 @@ namespace CTT_4_TESTER
          ******************************************/
         private void BgW_Test_DoWork(object sender, DoWorkEventArgs e)
         {
+            bool skipStep = false;
             try
             {
-                P4Adc p4Adc;
+                //P4Adc p4Adc;
 
                 p4Relay.setStandby();
                 //SetChartData(chartSpectrum, null, null);
@@ -525,18 +526,18 @@ namespace CTT_4_TESTER
                 tenma.On();
 
                 Thread.Sleep(1000);
-             /*   p4Adc = WantADC();
-                if (!p4Adc.IsVinOK(4.2))
+                p4Adc.startAdc();
+                if (!p4Adc.IsVinOK(3.0))
                 {
                     e.Result = "Error Board not in place or not connected to power";
                     return;
                 }
-                if (skipStep != 1)
+                if (!skipStep)
                 {
                     programmTheBoard();
                     Thread.Sleep(1500);
                 }
-                */
+                
             }
             catch (Exception exc)
             {
@@ -586,6 +587,45 @@ namespace CTT_4_TESTER
 
         }
 
+        private void buttonStart_Click(object sender, EventArgs e)
+        {
+            if (comPortCheck != null)
+            {
+                if (this.fileName == String.Empty)
+                {
+                    chooseApplicationFile();
+                }
+                UI_enableUnderTest();
+                BgW_Test.RunWorkerAsync();
+                //ResetButton();
+            }
+            else SetText(textBoxLog, "No Comm Port selected\r\n");
+
+        }
+
+        private void programmTheBoard()
+        {
+            int hr;
+
+            SetProgressBar(progressBarProgram, 0);
+            chooseApplicationFile();
+            SetLabel(labelStatus, "Board in program");
+            hr = p4Program.Execute(this.fileName);
+            System.Diagnostics.Debug.WriteLine("programming " + hr);
+            if (hr != 0)
+            {
+                SetLabel(labelStatus, p4Program.getLastError());
+                throw new Exception("Error during programming");
+            }
+            else SetLabel(labelStatus, "Board program OK");
+
+            SetProgressBar(progressBarProgram, 0);
+        }
+
+        private void buttonProgram_Click(object sender, EventArgs e)
+        {
+            programmTheBoard();
+        }
 
     }
 }

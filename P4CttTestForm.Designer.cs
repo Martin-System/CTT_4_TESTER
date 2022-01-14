@@ -61,6 +61,7 @@
             this.buttonADC = new System.Windows.Forms.Button();
             this.instantDoCtrl1 = new Automation.BDaq.InstantDoCtrl(this.components);
             this.instantAiCtrl1 = new Automation.BDaq.InstantAiCtrl(this.components);
+            this.buttonProgram = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonWpc
@@ -239,6 +240,7 @@
             this.buttonStart.TabIndex = 87;
             this.buttonStart.Text = "Start";
             this.buttonStart.UseVisualStyleBackColor = true;
+            this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
             // 
             // label3
             // 
@@ -327,11 +329,22 @@
             // 
             this.instantAiCtrl1._StateStream = ((Automation.BDaq.DeviceStateStreamer)(resources.GetObject("instantAiCtrl1._StateStream")));
             // 
+            // buttonProgram
+            // 
+            this.buttonProgram.Location = new System.Drawing.Point(618, 270);
+            this.buttonProgram.Name = "buttonProgram";
+            this.buttonProgram.Size = new System.Drawing.Size(75, 23);
+            this.buttonProgram.TabIndex = 109;
+            this.buttonProgram.Text = "Program";
+            this.buttonProgram.UseVisualStyleBackColor = true;
+            this.buttonProgram.Click += new System.EventHandler(this.buttonProgram_Click);
+            // 
             // P4CttTestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 727);
+            this.Controls.Add(this.buttonProgram);
             this.Controls.Add(this.buttonADC);
             this.Controls.Add(this.buttonUSB);
             this.Controls.Add(this.buttonWpc);
@@ -401,6 +414,7 @@
         private System.Windows.Forms.Button buttonADC;
         private Automation.BDaq.InstantDoCtrl instantDoCtrl1;
         private Automation.BDaq.InstantAiCtrl instantAiCtrl1;
+        private System.Windows.Forms.Button buttonProgram;
     }
 }
 
