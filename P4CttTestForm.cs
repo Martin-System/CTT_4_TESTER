@@ -18,7 +18,7 @@ namespace CTT_4_TESTER
 
         MsSerialPort msSerialPortToCheck;
         MsSerialPort msSerialPortGolden;
-        P4Program p4Program;
+        Psoc6Program p4Program;
         Tenma tenma;
 
         int deviceNumber = 0;
@@ -45,7 +45,7 @@ namespace CTT_4_TESTER
             System.Diagnostics.Trace.WriteLine("start ok");
             msSerialPortToCheck = new MsSerialPort(textBoxUartLog, this);
             msSerialPortGolden = new MsSerialPort(textBoxUartLog, this);
-            p4Program = new P4Program(progressBarProgram, this);
+            p4Program = new Psoc6Program(progressBarProgram, this);
             System.Diagnostics.Trace.WriteLine("programm ok");
 
             if (p4Program.Open() == false)
