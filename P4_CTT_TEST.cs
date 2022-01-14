@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CTT_4_TESTER
 {
-    public partial class Form1 : Form
+    public partial class P4_CTT_TEST : Form
     {
-        public Form1()
+        public P4_CTT_TEST()
         {
             InitializeComponent();
         }
