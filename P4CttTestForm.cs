@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
@@ -24,7 +25,7 @@ namespace CTT_4_TESTER
 
         string comPortCheck = null;
 
-        
+
 
         public P4CttTestForm()
         {
@@ -179,7 +180,7 @@ namespace CTT_4_TESTER
             {
                 System.Diagnostics.Debug.WriteLine(e.Message);
             }
-}
+        }
 
         private void UpdateComPortToCheck()
         {
@@ -467,5 +468,61 @@ namespace CTT_4_TESTER
             }
         }
 
+        /******************************************
+         *      BackGround : Test                 *
+         *                                        *
+         ******************************************/
+        private void BgW_Test_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                P4Leds p4Adc;
+
+                p4Relay.setStandby();
+                //SetChartData(chartSpectrum, null, null);
+                tenma.setVoltage(4.2f);
+                Thread.Sleep(200);
+                tenma.setCurrent(3f);
+                Thread.Sleep(200);
+                tenma.On();
+
+                Thread.Sleep(1000);
+                p4Adc = WantADC();
+                if (!p4Adc.IsVinOK(4.2))
+                {
+                    e.Result = "Error Board not in place or not connected to power";
+                    return;
+                }
+                if (skipStep != 1)
+                {
+                    programmTheBoard();
+                    Thread.Sleep(1500);
+                }
+
+            }
+            catch (Exception exc)
+            {
+                /* Return error if an exception occurs */
+                e.Result = "" + exc.Message;
+                tenma.Off();
+            }
+
+
+        }
+
+        private void BgW_Test_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Result != null)
+            {
+                SetLabel(labelStatus, (string)e.Result + "\r\nChange SN to enabled a new test");
+                //ResetButton();
+
+            }
+            else
+            {
+                SetLabel(labelStatus, "PCB end test - all OK enter the next serial number");
+            }
+            UI_enableSn();
+        }
     }
 }

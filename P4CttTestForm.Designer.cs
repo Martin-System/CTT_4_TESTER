@@ -54,6 +54,7 @@
             this.textBoxUartLog = new System.Windows.Forms.TextBox();
             this.comboBoxComPortToTest = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.BgW_Test = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // button1
@@ -287,6 +288,10 @@
             this.label2.TabIndex = 81;
             this.label2.Text = "COM Port PCB à tester ";
             // 
+            // BgW_Test
+            // 
+            this.BgW_Test.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BgW_Test_DoWork);
+            // 
             // P4CttTestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -353,6 +358,7 @@
         private System.Windows.Forms.TextBox textBoxUartLog;
         private System.Windows.Forms.ComboBox comboBoxComPortToTest;
         private System.Windows.Forms.Label label2;
+        private System.ComponentModel.BackgroundWorker BgW_Test;
     }
 }
 

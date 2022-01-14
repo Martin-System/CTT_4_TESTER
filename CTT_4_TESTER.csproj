@@ -60,7 +60,9 @@
     <Compile Include="P4CttTestForm.Designer.cs">
       <DependentUpon>P4CttTestForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="P4Leds.cs" />
     <Compile Include="P4Program.cs" />
+    <Compile Include="P4Relay.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tenma.cs" />
