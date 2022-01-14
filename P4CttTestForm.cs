@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Automation.BDaq;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Threading;
@@ -20,6 +21,9 @@ namespace CTT_4_TESTER
         P4Program p4Program;
         Tenma tenma;
 
+        int deviceNumber = 0;
+        P4Relay p4Relay;
+        P4Adc p4Adc;
 
         string fileName = String.Empty;
 
@@ -53,6 +57,40 @@ namespace CTT_4_TESTER
             System.Diagnostics.Trace.WriteLine("Tenma ok");
             UpdateComPortToChecTenma();
             UI_enableTenma();
+        }
+
+        private void P4CttTestForm_Load(object sender, EventArgs e)
+        {
+            //The default device of project is demo device, users can choose other devices according to their needs. 
+            if (!instantDoCtrl1.Initialized)
+            {
+                MessageBox.Show("No device be selected or device open failed!", "StaticDO");
+                this.Close();
+                return;
+            }
+            p4Relay = new P4Relay(instantDoCtrl1, this.deviceNumber);
+            this.Text = "Static DO(" + instantDoCtrl1.SelectedDevice.Description + ")";
+            ErrorCode err = p4Relay.init();
+            if (err != ErrorCode.Success)
+            {
+                HandleError(err);
+            }
+
+            if (!instantAiCtrl1.Initialized)
+            {
+                MessageBox.Show("No device be selected or device open failed!", "StreamingAI");
+                this.Close();
+                return;
+            }
+            p4Adc = new P4Adc(instantAiCtrl1, this.deviceNumber);
+        }
+
+        private void HandleError(ErrorCode err)
+        {
+            if ((err >= ErrorCode.ErrorHandleNotValid) && (err != ErrorCode.Success))
+            {
+                MessageBox.Show("Sorry ! Some errors happened, the error code is: " + err.ToString());
+            }
         }
 
         public void SetText(TextBox tbox, string text)
@@ -487,7 +525,7 @@ namespace CTT_4_TESTER
                 tenma.On();
 
                 Thread.Sleep(1000);
-                p4Adc = WantADC();
+             /*   p4Adc = WantADC();
                 if (!p4Adc.IsVinOK(4.2))
                 {
                     e.Result = "Error Board not in place or not connected to power";
@@ -498,7 +536,7 @@ namespace CTT_4_TESTER
                     programmTheBoard();
                     Thread.Sleep(1500);
                 }
-
+                */
             }
             catch (Exception exc)
             {
@@ -524,5 +562,30 @@ namespace CTT_4_TESTER
             }
             UI_enableSn();
         }
+        static bool stateUSB = false;
+        static bool stateWPC = false;
+        private void buttonWPC_Click(object sender, EventArgs e)
+        {
+            if (stateWPC) stateWPC = false;
+            else stateWPC = true;
+            p4Relay.setWpcCharging(stateWPC);
+
+        }
+
+        private void buttonUSB_Click(object sender, EventArgs e)
+        {
+            if (stateUSB) stateUSB = false;
+            else stateUSB = true;
+            p4Relay.setUsbCharging(stateUSB);
+
+        }
+
+        private void buttonADC_Click(object sender, EventArgs e)
+        {
+            p4Adc.startAdc();
+
+        }
+
+
     }
 }

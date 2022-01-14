@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(P4CttTestForm));
+            this.buttonWpc = new System.Windows.Forms.Button();
             this.textBoxFileName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.buttonErrorCW = new System.Windows.Forms.Button();
@@ -55,16 +57,21 @@
             this.comboBoxComPortToTest = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.BgW_Test = new System.ComponentModel.BackgroundWorker();
+            this.buttonUSB = new System.Windows.Forms.Button();
+            this.buttonADC = new System.Windows.Forms.Button();
+            this.instantDoCtrl1 = new Automation.BDaq.InstantDoCtrl(this.components);
+            this.instantAiCtrl1 = new Automation.BDaq.InstantAiCtrl(this.components);
             this.SuspendLayout();
             // 
-            // button1
+            // buttonWpc
             // 
-            this.button1.Location = new System.Drawing.Point(618, 182);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 106;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonWpc.Location = new System.Drawing.Point(618, 182);
+            this.buttonWpc.Name = "buttonWpc";
+            this.buttonWpc.Size = new System.Drawing.Size(75, 23);
+            this.buttonWpc.TabIndex = 106;
+            this.buttonWpc.Text = "buttonWpc";
+            this.buttonWpc.UseVisualStyleBackColor = true;
+            this.buttonWpc.Click += new System.EventHandler(this.buttonWPC_Click);
             // 
             // textBoxFileName
             // 
@@ -292,12 +299,42 @@
             // 
             this.BgW_Test.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BgW_Test_DoWork);
             // 
+            // buttonUSB
+            // 
+            this.buttonUSB.Location = new System.Drawing.Point(618, 211);
+            this.buttonUSB.Name = "buttonUSB";
+            this.buttonUSB.Size = new System.Drawing.Size(75, 23);
+            this.buttonUSB.TabIndex = 107;
+            this.buttonUSB.Text = "buttonUSB";
+            this.buttonUSB.UseVisualStyleBackColor = true;
+            this.buttonUSB.Click += new System.EventHandler(this.buttonUSB_Click);
+            // 
+            // buttonADC
+            // 
+            this.buttonADC.Location = new System.Drawing.Point(618, 240);
+            this.buttonADC.Name = "buttonADC";
+            this.buttonADC.Size = new System.Drawing.Size(75, 23);
+            this.buttonADC.TabIndex = 108;
+            this.buttonADC.Text = "buttonADC";
+            this.buttonADC.UseVisualStyleBackColor = true;
+            this.buttonADC.Click += new System.EventHandler(this.buttonADC_Click);
+            // 
+            // instantDoCtrl1
+            // 
+            this.instantDoCtrl1._StateStream = ((Automation.BDaq.DeviceStateStreamer)(resources.GetObject("instantDoCtrl1._StateStream")));
+            // 
+            // instantAiCtrl1
+            // 
+            this.instantAiCtrl1._StateStream = ((Automation.BDaq.DeviceStateStreamer)(resources.GetObject("instantAiCtrl1._StateStream")));
+            // 
             // P4CttTestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 727);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonADC);
+            this.Controls.Add(this.buttonUSB);
+            this.Controls.Add(this.buttonWpc);
             this.Controls.Add(this.textBoxFileName);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.buttonErrorCW);
@@ -325,6 +362,7 @@
             this.Controls.Add(this.label2);
             this.Name = "P4CttTestForm";
             this.Text = "P4 CTT 4 Test";
+            this.Load += new System.EventHandler(this.P4CttTestForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -332,7 +370,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonWpc;
         private System.Windows.Forms.TextBox textBoxFileName;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button buttonErrorCW;
@@ -359,6 +397,10 @@
         private System.Windows.Forms.ComboBox comboBoxComPortToTest;
         private System.Windows.Forms.Label label2;
         private System.ComponentModel.BackgroundWorker BgW_Test;
+        private System.Windows.Forms.Button buttonUSB;
+        private System.Windows.Forms.Button buttonADC;
+        private Automation.BDaq.InstantDoCtrl instantDoCtrl1;
+        private Automation.BDaq.InstantAiCtrl instantAiCtrl1;
     }
 }
 

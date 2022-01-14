@@ -30,7 +30,7 @@ public class P4Relay
 		return err;
 	}
 
-	public ErrorCode setUSBCharging(bool state)
+	public ErrorCode setUsbCharging(bool state)
 	{
 		ErrorCode err;
 		byte portData = 0x00;
