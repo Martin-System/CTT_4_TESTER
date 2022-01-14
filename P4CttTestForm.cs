@@ -476,7 +476,7 @@ namespace CTT_4_TESTER
         {
             try
             {
-                P4Leds p4Adc;
+                P4Adc p4Adc;
 
                 p4Relay.setStandby();
                 //SetChartData(chartSpectrum, null, null);

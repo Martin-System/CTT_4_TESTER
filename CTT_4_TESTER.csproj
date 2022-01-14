@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Automation.BDaq4, Version=4.0.0.0, Culture=neutral, PublicKeyToken=463f5928d60183a0, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\..\..\Windows\assembly\GAC_MSIL\Automation.BDaq4\4.0.0.0__463f5928d60183a0\Automation.BDaq4.dll</HintPath>
+    </Reference>
     <Reference Include="PP_COM_Wrapper">
       <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Cypress\Programmer\PP_COM_Wrapper.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
@@ -60,7 +64,7 @@
     <Compile Include="P4CttTestForm.Designer.cs">
       <DependentUpon>P4CttTestForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="P4Leds.cs" />
+    <Compile Include="P4Adc.cs" />
     <Compile Include="P4Program.cs" />
     <Compile Include="P4Relay.cs" />
     <Compile Include="Program.cs" />
