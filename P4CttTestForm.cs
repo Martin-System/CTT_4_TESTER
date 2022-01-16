@@ -516,7 +516,7 @@ namespace CTT_4_TESTER
             try
             {
                 //P4Adc p4Adc;
-
+                //Thread.SetApartmentState(ApartmentState.STA);
                 p4Relay.setStandby();
                 //SetChartData(chartSpectrum, null, null);
                 tenma.setVoltage(4.2f);
@@ -535,7 +535,7 @@ namespace CTT_4_TESTER
                 if (!skipStep)
                 {
                     programmTheBoard();
-                    Thread.Sleep(1500);
+                    Thread.Sleep(500);
                 }
                 
             }
@@ -608,7 +608,7 @@ namespace CTT_4_TESTER
             int hr;
 
             SetProgressBar(progressBarProgram, 0);
-            chooseApplicationFile();
+            //chooseApplicationFile();
             SetLabel(labelStatus, "Board in program");
             hr = p4Program.Execute(this.fileName);
             System.Diagnostics.Debug.WriteLine("programming " + hr);
@@ -627,5 +627,10 @@ namespace CTT_4_TESTER
             programmTheBoard();
         }
 
+        private void buttonTenma_Click(object sender, EventArgs e)
+        {
+
+            tenma.setVoltage(4.0f);
+        }
     }
 }

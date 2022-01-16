@@ -299,6 +299,8 @@ namespace CTT_4_TESTER
             for (int rowAddr = PSOC6_WFLASH_ADDR; rowAddr < PSOC6_WFLASH_ADDR + PSOC6_WFLASH_SIZE; rowAddr += m_rowSize)
             {
                 hr = pp.PSoC6_EraseRow(rowAddr, out m_sLastError);
+
+                parent.SetProgressBar(progressBar, (rowAddr - PSOC6_WFLASH_ADDR) * 100 / (PSOC6_WFLASH_ADDR + PSOC6_WFLASH_SIZE) / m_rowSize);
                 if (!SUCCEEDED(hr)) return hr;
             }
             Console.WriteLine("Erasing of Work Flash Succeeded");
@@ -319,6 +321,7 @@ namespace CTT_4_TESTER
             for (int i = startRow; i <= endRow; i++)
             {
                 hr = ProgramOp(i, out m_sLastError);
+                parent.SetProgressBar(progressBar, (i-startRow) * 100 / (endRow- startRow) / 2);
                 if (!SUCCEEDED(hr)) return hr;
             }
 
@@ -345,6 +348,8 @@ namespace CTT_4_TESTER
                     result = false;
                     return hr;
                 }
+
+                parent.SetProgressBar(progressBar, 50 + (i-startRow) * 100 / (endRow - startRow) / 2);
 
                 if (++processedRowCount * m_rowSize >= sizeLimit) break;
             }
@@ -415,6 +420,10 @@ namespace CTT_4_TESTER
             hr = pp.HEX_ReadFile(filePath, out hexImageSize, out m_sLastError);
             if (!SUCCEEDED(hr)) return hr;
 
+            //: 0x00 – autoreset disabled, 0x01 – autoreset enabled
+            hr = pp.SetAutoReset(0x01, out m_sLastError);
+            if (!SUCCEEDED(hr)) return hr;
+
             //Acquire Device
             hr = pp.DAP_Acquire(out m_sLastError);
             if (!SUCCEEDED(hr)) return hr;
@@ -455,8 +464,9 @@ namespace CTT_4_TESTER
             hr = VerifyFlash(out result);
             if (!SUCCEEDED(hr) || !result) return E_FAIL;
 
-            hr = pp.ReleaseChip(out m_sLastError);
-            if (!SUCCEEDED(hr)) return hr;
+            hr = pp.DAP_ReleaseChip(out m_sLastError);
+            if (!SUCCEEDED(hr)) 
+                return hr;
 
             return hr;
         }

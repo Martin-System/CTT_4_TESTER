@@ -62,6 +62,7 @@
             this.instantDoCtrl1 = new Automation.BDaq.InstantDoCtrl(this.components);
             this.instantAiCtrl1 = new Automation.BDaq.InstantAiCtrl(this.components);
             this.buttonProgram = new System.Windows.Forms.Button();
+            this.buttonTenma = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonWpc
@@ -286,7 +287,7 @@
             this.comboBoxComPortToTest.Name = "comboBoxComPortToTest";
             this.comboBoxComPortToTest.Size = new System.Drawing.Size(121, 21);
             this.comboBoxComPortToTest.TabIndex = 82;
-            this.comboBoxComPortToTest.SelectedIndexChanged += new System.EventHandler(this.comboBoxComPortTenmaToCHeck_SelectedIndexChanged);
+            this.comboBoxComPortToTest.SelectedIndexChanged += new System.EventHandler(this.comboBoxComPortToCHeck_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -339,11 +340,22 @@
             this.buttonProgram.UseVisualStyleBackColor = true;
             this.buttonProgram.Click += new System.EventHandler(this.buttonProgram_Click);
             // 
+            // buttonTenma
+            // 
+            this.buttonTenma.Location = new System.Drawing.Point(618, 299);
+            this.buttonTenma.Name = "buttonTenma";
+            this.buttonTenma.Size = new System.Drawing.Size(75, 23);
+            this.buttonTenma.TabIndex = 110;
+            this.buttonTenma.Text = "Tenma";
+            this.buttonTenma.UseVisualStyleBackColor = true;
+            this.buttonTenma.Click += new System.EventHandler(this.buttonTenma_Click);
+            // 
             // P4CttTestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 727);
+            this.Controls.Add(this.buttonTenma);
             this.Controls.Add(this.buttonProgram);
             this.Controls.Add(this.buttonADC);
             this.Controls.Add(this.buttonUSB);
@@ -415,6 +427,7 @@
         private Automation.BDaq.InstantDoCtrl instantDoCtrl1;
         private Automation.BDaq.InstantAiCtrl instantAiCtrl1;
         private System.Windows.Forms.Button buttonProgram;
+        private System.Windows.Forms.Button buttonTenma;
     }
 }
 
