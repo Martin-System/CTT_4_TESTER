@@ -93,6 +93,24 @@ namespace CTT_4_TESTER
             }
         }
 
+
+        public void ClearAndSetText(TextBox tbox, string text)
+        {
+            // InvokeRequired required compares the thread ID of the
+            // calling thread to the thread ID of the creating thread.
+            // If these threads are different, it returns true.
+            if (tbox.InvokeRequired)
+            {
+                SetTextCallback d = new SetTextCallback(ClearAndSetText);
+                this.Invoke(d, new object[] { tbox, text });
+            }
+            else
+            {
+                tbox.Text = text;
+            }
+
+        }
+
         public void SetText(TextBox tbox, string text)
         {
             // InvokeRequired required compares the thread ID of the
@@ -532,12 +550,44 @@ namespace CTT_4_TESTER
                     e.Result = "Error Board not in place or not connected to power";
                     return;
                 }
+
+                /********************************/
+                    //Programm the board
+                /********************************/
+
                 if (!skipStep)
                 {
                     programmTheBoard();
                     Thread.Sleep(500);
                 }
-                
+
+                /********************************/
+                    //Check Version 
+                /********************************/
+                Version sVersion = new Version(msSerialPortToCheck);
+                SetText(textBoxLog, "Version : " + sVersion.toString() + "\r\n");
+                ClearAndSetText(textBoxBoard, sVersion.board_version);
+                ClearAndSetText(textBoxFirmware, sVersion.firmware_version);
+
+                /********************************/
+                //Check Battery ADC 
+                /********************************/
+                SetLabel(labelStatus, "TEST BATTERY");
+                Battery sbattery = new Battery(msSerialPortToCheck);
+
+                SetLabel(labelStatus, "BATTERY RECEIVEDY");
+                if (sbattery.IsValueOk(4.2f, 0.05f))
+                {
+                    SetText(textBoxLog, "Battery OK" + sbattery.toString() + "\r\n");
+                }
+                else
+                {
+                    SetText(textBoxLog, "Battery NOK" + sbattery.toString() + "\r\n");
+                    e.Result = "Error Battery - Check battery measurement : " + sbattery.value;
+                    return;
+                }
+                SetLabel(labelStatus, "BATTERY OK");
+
             }
             catch (Exception exc)
             {

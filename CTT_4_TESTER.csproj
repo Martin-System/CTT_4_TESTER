@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Battery.cs" />
     <Compile Include="MsSerialPort.cs" />
     <Compile Include="P4CttTestForm.cs">
       <SubType>Form</SubType>

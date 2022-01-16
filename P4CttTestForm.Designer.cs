@@ -301,6 +301,7 @@
             // BgW_Test
             // 
             this.BgW_Test.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BgW_Test_DoWork);
+            this.BgW_Test.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BgW_Test_RunWorkerCompleted);
             // 
             // buttonUSB
             // 
