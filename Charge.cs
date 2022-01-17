@@ -5,19 +5,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Globalization;
+using System.Threading;
 
-namespace P4_TestCollar
+namespace CTT_4_TESTER
 {
     class Charge
     {
-        public int value;
+        public Charging status;
         private string error = null;
 
-        enum Charging
+        public enum Charging
         {
-            NO_CHARGE,
-            CHARGING,
-            CHARGED
+            NO_OP,
+            WIRE,
+            WIRE_CHARGED,
+            WPC,
+            WPC_CHARGED
         }
 
         public Charge(MsSerialPort msSerialPort)
@@ -30,10 +33,12 @@ namespace P4_TestCollar
                 //return;
             }
             ret = msSerialPort.sendStrUartCmd("CHARGE\r\n", "#>");
+            CheckStringOk(ret);
             if (ret == null)
             {
                 throw new Exception("Erreur de communication UART");
             }
+            ret = msSerialPort.uartReadStringAndContains("CHARGE", ">");
             CheckString(ret);
         }
 
@@ -41,6 +46,59 @@ namespace P4_TestCollar
         {
             this.error = null;
             CheckString(str);
+        }
+
+        public bool waitStatus(MsSerialPort msSerialPort, Charging status,UInt32 timeout_ms)
+        {
+            bool bRet = false;
+
+            for (uint i = 0; i < (timeout_ms / 100); i++)
+            {
+                string ret;
+                this.error = null;
+                if (msSerialPort.sendStrUartCmd("m\r\n", "#>") == null)
+                {
+                    throw new Exception("Erreur de communication UART");
+                    //return;
+                }
+                ret = msSerialPort.sendStrUartCmd("CHARGE\r\n", "#>");
+                CheckStringOk(ret);
+                if (ret == null)
+                {
+                    throw new Exception("Erreur de communication UART");
+                }
+                ret = msSerialPort.uartReadStringAndContains("CHARGE", ">");
+                CheckString(ret);
+                if(this.status == status)
+                {
+                    bRet = true;
+                    break;
+                }
+                Thread.Sleep(100);
+            }
+            if(bRet == false) throw new Exception("Error charge : " + status);
+            return bRet;
+
+        }
+
+        private void CheckStringOk(string str)
+        {
+            uint i = 0;
+            string[] substrings = Regex.Matches(str, @"<([A-Za-z0-9 _.-]+)>").Cast<Match>().Select(m => m.Value).ToArray();
+
+            // <OK>
+
+            foreach (string match in substrings)
+            {
+                if (match.Contains("OK"))
+                {
+                    error = "OK";
+                }
+                else
+                {
+                    throw new Exception("Error in the STR for Version " + str);
+                }
+            }
         }
 
         private void CheckString(string str)
@@ -52,14 +110,30 @@ namespace P4_TestCollar
 
             foreach (string match in substrings)
             {
-                if (match.Contains("OK"))
+                if (match.Contains("CHARGE"))
                 {
                     string sub = match.Substring(1, match.Length - 2);
                     string[] spl = sub.Split(' ');
                     CultureInfo provider = CultureInfo.InvariantCulture;
-                    if (spl.Length == 2 && int.TryParse(spl[1], NumberStyles.Integer, provider, out int level))
+                    if (spl.Length == 2 && spl[1].EndsWith("NO_OP"))
                     {
-                        value = level;
+                        status = Charging.NO_OP;
+                    }
+                    else if (spl.Length == 2 && spl[1].EndsWith("WIRE"))
+                    {
+                        status = Charging.WIRE;
+                    }
+                    else if (spl.Length == 2 && spl[1].EndsWith("WIRE_CHARGED"))
+                    {
+                        status = Charging.WIRE_CHARGED;
+                    }
+                    else if (spl.Length == 2 && spl[1].EndsWith("WPC"))
+                    {
+                        status = Charging.WPC;
+                    }
+                    else if (spl.Length == 2 && spl[1].EndsWith("WPC_CHARGED"))
+                    {
+                        status = Charging.WPC_CHARGED;
                     }
                     else
                     {
@@ -71,15 +145,6 @@ namespace P4_TestCollar
                     throw new Exception("Error in the STR for Charge " + str);
                 }
             }
-        }
-
-        public bool IsValueOk(float toTest, float tolerance)
-        {
-            if (this.value > (toTest * (1 + tolerance)) || this.value < (toTest * (1 - tolerance)))
-            {
-                return false;
-            }
-            else return true;
         }
 
         public bool IsError()
@@ -97,7 +162,7 @@ namespace P4_TestCollar
 
         public string toString()
         {
-            return "Charge = " + value;
+            return "Charge = " + status;
         }
     }
 }

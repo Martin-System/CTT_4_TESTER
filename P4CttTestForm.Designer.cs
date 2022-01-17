@@ -63,6 +63,7 @@
             this.instantAiCtrl1 = new Automation.BDaq.InstantAiCtrl(this.components);
             this.buttonProgram = new System.Windows.Forms.Button();
             this.buttonTenma = new System.Windows.Forms.Button();
+            this.buttonCharge = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonWpc
@@ -351,11 +352,22 @@
             this.buttonTenma.UseVisualStyleBackColor = true;
             this.buttonTenma.Click += new System.EventHandler(this.buttonTenma_Click);
             // 
+            // buttonCharge
+            // 
+            this.buttonCharge.Location = new System.Drawing.Point(618, 328);
+            this.buttonCharge.Name = "buttonCharge";
+            this.buttonCharge.Size = new System.Drawing.Size(75, 23);
+            this.buttonCharge.TabIndex = 111;
+            this.buttonCharge.Text = "Charge";
+            this.buttonCharge.UseVisualStyleBackColor = true;
+            this.buttonCharge.Click += new System.EventHandler(this.buttonCharge_Click);
+            // 
             // P4CttTestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 727);
+            this.Controls.Add(this.buttonCharge);
             this.Controls.Add(this.buttonTenma);
             this.Controls.Add(this.buttonProgram);
             this.Controls.Add(this.buttonADC);
@@ -429,6 +441,7 @@
         private Automation.BDaq.InstantAiCtrl instantAiCtrl1;
         private System.Windows.Forms.Button buttonProgram;
         private System.Windows.Forms.Button buttonTenma;
+        private System.Windows.Forms.Button buttonCharge;
     }
 }
 

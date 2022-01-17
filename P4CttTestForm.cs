@@ -588,6 +588,39 @@ namespace CTT_4_TESTER
                 }
                 SetLabel(labelStatus, "BATTERY OK");
 
+                /********************************/
+                //Check Battery ADC 
+                /********************************/
+                Charge charge = new Charge(msSerialPortToCheck);
+                SetText(textBoxLog, "charge OK" + charge.toString() + "\r\n");
+
+                if (charge.waitStatus(msSerialPortToCheck, Charge.Charging.NO_OP, 1000))
+                    SetText(textBoxLog, "test charge OK " + Charge.Charging.NO_OP + "\r\n");
+
+                p4Relay.setUsbCharging(true);
+                if(charge.waitStatus(msSerialPortToCheck, Charge.Charging.WIRE, 2000))
+                    SetText(textBoxLog, "test charge OK " + Charge.Charging.WIRE + "\r\n");
+                tenma.setVoltage(4.8f);
+                if (charge.waitStatus(msSerialPortToCheck, Charge.Charging.WIRE_CHARGED, 2000))
+                    SetText(textBoxLog, "test charge OK " + Charge.Charging.WIRE_CHARGED + "\r\n");
+                tenma.setVoltage(4.2f);
+
+                p4Relay.setUsbCharging(false);
+                if (charge.waitStatus(msSerialPortToCheck, Charge.Charging.NO_OP, 1000))
+                    SetText(textBoxLog, "test charge OK " + Charge.Charging.NO_OP + "\r\n");
+
+                p4Relay.setWpcCharging(true);
+                if (charge.waitStatus(msSerialPortToCheck, Charge.Charging.WPC, 5000))
+                    SetText(textBoxLog, "test charge OK " + Charge.Charging.WPC + "\r\n");
+                tenma.setVoltage(4.8f);
+                if (charge.waitStatus(msSerialPortToCheck, Charge.Charging.WPC_CHARGED, 2000))
+                    SetText(textBoxLog, "test charge OK " + Charge.Charging.WPC_CHARGED + "\r\n");
+
+                tenma.setVoltage(4.2f);
+                p4Relay.setWpcCharging(false);
+                if (charge.waitStatus(msSerialPortToCheck, Charge.Charging.NO_OP, 5000))
+                    SetText(textBoxLog, "test charge OK " + Charge.Charging.NO_OP + "\r\n");
+                p4Relay.setStandby();
             }
             catch (Exception exc)
             {
@@ -681,6 +714,16 @@ namespace CTT_4_TESTER
         {
 
             tenma.setVoltage(4.0f);
+        }
+
+        private void buttonCharge_Click(object sender, EventArgs e)
+        {
+            Charge charge = new Charge(msSerialPortToCheck);
+            SetText(textBoxLog, "charge OK" + charge.toString() + "\r\n");
+
+            if(charge.waitStatus(msSerialPortToCheck,Charge.Charging.NO_OP,1000))
+                SetText(textBoxLog, "charge NO OP OK" + charge.toString() + "\r\n");
+
         }
     }
 }
