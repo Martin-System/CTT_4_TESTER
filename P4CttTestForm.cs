@@ -627,6 +627,8 @@ namespace CTT_4_TESTER
                 p4Relay.setStandby();
 
                 Thread.Sleep(500);
+                Thread.Sleep(500);
+                Thread.Sleep(500);
 
                 /********************************/
                 //Check Switch 
@@ -731,16 +733,18 @@ namespace CTT_4_TESTER
 
         private void buttonCharge_Click(object sender, EventArgs e)
         {
-            /*    Charge charge = new Charge(msSerialPortToCheck);
-                SetText(textBoxLog, "charge OK" + charge.toString() + "\r\n");
+            Charge charge = new Charge(msSerialPortToCheck);
+            SetText(textBoxLog, "charge OK" + charge.toString() + "\r\n");
 
-                if(charge.waitStatus(msSerialPortToCheck,Charge.Charging.NO_OP,1000))
-                    SetText(textBoxLog, "charge NO OP OK" + charge.toString() + "\r\n");
-                    */
+            if(charge.waitStatus(msSerialPortToCheck,Charge.Charging.NO_OP,1000))
+                SetText(textBoxLog, "charge NO OP OK" + charge.toString() + "\r\n");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
             PushButton pushButton = new PushButton(msSerialPortToCheck);
-            if(pushButton.waitStatus(msSerialPortToCheck,this,20000))
+            if (pushButton.waitStatus(msSerialPortToCheck, this, 20000))
                 SetText(textBoxLog, "pushButton" + pushButton.toString() + "\r\n");
-
         }
     }
 }

@@ -64,6 +64,7 @@
             this.buttonProgram = new System.Windows.Forms.Button();
             this.buttonTenma = new System.Windows.Forms.Button();
             this.buttonCharge = new System.Windows.Forms.Button();
+            this.buttonSwitch = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonWpc
@@ -362,11 +363,22 @@
             this.buttonCharge.UseVisualStyleBackColor = true;
             this.buttonCharge.Click += new System.EventHandler(this.buttonCharge_Click);
             // 
+            // buttonSwitch
+            // 
+            this.buttonSwitch.Location = new System.Drawing.Point(618, 357);
+            this.buttonSwitch.Name = "buttonSwitch";
+            this.buttonSwitch.Size = new System.Drawing.Size(75, 23);
+            this.buttonSwitch.TabIndex = 112;
+            this.buttonSwitch.Text = "Switch";
+            this.buttonSwitch.UseVisualStyleBackColor = true;
+            this.buttonSwitch.Click += new System.EventHandler(this.button1_Click);
+            // 
             // P4CttTestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 727);
+            this.Controls.Add(this.buttonSwitch);
             this.Controls.Add(this.buttonCharge);
             this.Controls.Add(this.buttonTenma);
             this.Controls.Add(this.buttonProgram);
@@ -442,6 +454,7 @@
         private System.Windows.Forms.Button buttonProgram;
         private System.Windows.Forms.Button buttonTenma;
         private System.Windows.Forms.Button buttonCharge;
+        private System.Windows.Forms.Button buttonSwitch;
     }
 }
 
