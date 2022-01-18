@@ -14,6 +14,7 @@ namespace CTT_4_TESTER
         delegate void SetLabelTextCallback(Label label, string text); /* Delegate for cross-thread invoke on textbox control */
         delegate void EnalbeButtonCallback(Button button, bool val); /* Delegate for cross-thread invoke on textbox control */
         delegate void SetProgressBarCallback(ProgressBar progressBar, int step);
+        delegate void EnableCheckBoxCallback(CheckBox progressBar, bool status);
         delegate void SetChartCallback(Chart chart, float[] dataXs, float[] dataYs);
 
         MsSerialPort msSerialPortToCheck;
@@ -96,6 +97,7 @@ namespace CTT_4_TESTER
         public void setSwitchState(bool[] state)
         {
             SetText(textBoxLog, "switch " + state);
+            UI_enableSwitch(state);
         }
 
         public void ClearAndSetText(TextBox tbox, string text)
@@ -217,6 +219,32 @@ namespace CTT_4_TESTER
             else
             {
                 progressBar.Value = step;
+            }
+
+        }
+
+        public void EnableCheckBox(CheckBox checkBox, bool status)
+        {
+            // InvokeRequired required compares the thread ID of the
+            // calling thread to the thread ID of the creating thread.
+            // If these threads are different, it returns true.
+            if (checkBox.InvokeRequired)
+            {
+                EnableCheckBoxCallback d = new EnableCheckBoxCallback(EnableCheckBox);
+                this.Invoke(d, new object[] { checkBox, status });
+            }
+            else
+            {
+                if (status)
+                {
+                    checkBox.ForeColor = Color.Green;
+                    checkBox.Checked = true;
+                }
+                else
+                {
+                    checkBox.ForeColor = Color.Red;
+                    checkBox.Checked = false;
+                }
             }
 
         }
@@ -451,6 +479,7 @@ namespace CTT_4_TESTER
             buttonCwInc.Enabled = false;
             buttonErrorCW.Enabled = false;
             buttonCwIncP.Enabled = false;
+            UI_enableAllSwitchTest(false);
         }
         private void UI_enableStart()
         {
@@ -465,8 +494,6 @@ namespace CTT_4_TESTER
             buttonCwInc.Enabled = false;
             buttonCwIncP.Enabled = false;
             buttonErrorCW.Enabled = false;
-
-
         }
 
         private void UI_enableUnderTest()
@@ -482,6 +509,28 @@ namespace CTT_4_TESTER
             buttonCwInc.Enabled = false;
             buttonCwIncP.Enabled = false;
             buttonErrorCW.Enabled = false;
+        }
+
+        private void UI_enableAllSwitchTest(bool status)
+        {
+            EnableCheckBox(checkBox1A, status);
+            EnableCheckBox(checkBox1B, status);
+            EnableCheckBox(checkBox2A, status);
+            EnableCheckBox(checkBox2B, status);
+            EnableCheckBox(checkBoxCfg, status);
+            EnableCheckBox(checkBoxDec, status);
+            EnableCheckBox(checkBoxInc, status);
+        }
+
+        private void UI_enableSwitch(bool[] stat)
+        {
+            EnableCheckBox(checkBox1A, stat[0]);
+            EnableCheckBox(checkBox1B, stat[1]);
+            EnableCheckBox(checkBox2A, stat[2]);
+            EnableCheckBox(checkBox2B, stat[3]);
+            EnableCheckBox(checkBoxCfg, stat[4]);
+            EnableCheckBox(checkBoxDec, stat[5]);
+            EnableCheckBox(checkBoxInc, stat[6]);
         }
 
         /***************************************************/
@@ -626,9 +675,7 @@ namespace CTT_4_TESTER
                     SetText(textBoxLog, "test charge OK " + Charge.Charging.NO_OP + "\r\n");
                 p4Relay.setStandby();
 
-                Thread.Sleep(500);
-                Thread.Sleep(500);
-                Thread.Sleep(500);
+                Thread.Sleep(4000);
 
                 /********************************/
                 //Check Switch 

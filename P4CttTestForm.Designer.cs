@@ -65,11 +65,20 @@
             this.buttonTenma = new System.Windows.Forms.Button();
             this.buttonCharge = new System.Windows.Forms.Button();
             this.buttonSwitch = new System.Windows.Forms.Button();
+            this.groupBoxSwitch = new System.Windows.Forms.GroupBox();
+            this.checkBox1A = new System.Windows.Forms.CheckBox();
+            this.checkBox1B = new System.Windows.Forms.CheckBox();
+            this.checkBox2A = new System.Windows.Forms.CheckBox();
+            this.checkBox2B = new System.Windows.Forms.CheckBox();
+            this.checkBoxCfg = new System.Windows.Forms.CheckBox();
+            this.checkBoxDec = new System.Windows.Forms.CheckBox();
+            this.checkBoxInc = new System.Windows.Forms.CheckBox();
+            this.groupBoxSwitch.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonWpc
             // 
-            this.buttonWpc.Location = new System.Drawing.Point(618, 182);
+            this.buttonWpc.Location = new System.Drawing.Point(661, 512);
             this.buttonWpc.Name = "buttonWpc";
             this.buttonWpc.Size = new System.Drawing.Size(75, 23);
             this.buttonWpc.TabIndex = 106;
@@ -307,7 +316,7 @@
             // 
             // buttonUSB
             // 
-            this.buttonUSB.Location = new System.Drawing.Point(618, 211);
+            this.buttonUSB.Location = new System.Drawing.Point(661, 541);
             this.buttonUSB.Name = "buttonUSB";
             this.buttonUSB.Size = new System.Drawing.Size(75, 23);
             this.buttonUSB.TabIndex = 107;
@@ -317,7 +326,7 @@
             // 
             // buttonADC
             // 
-            this.buttonADC.Location = new System.Drawing.Point(618, 240);
+            this.buttonADC.Location = new System.Drawing.Point(661, 570);
             this.buttonADC.Name = "buttonADC";
             this.buttonADC.Size = new System.Drawing.Size(75, 23);
             this.buttonADC.TabIndex = 108;
@@ -335,7 +344,7 @@
             // 
             // buttonProgram
             // 
-            this.buttonProgram.Location = new System.Drawing.Point(618, 270);
+            this.buttonProgram.Location = new System.Drawing.Point(661, 600);
             this.buttonProgram.Name = "buttonProgram";
             this.buttonProgram.Size = new System.Drawing.Size(75, 23);
             this.buttonProgram.TabIndex = 109;
@@ -345,7 +354,7 @@
             // 
             // buttonTenma
             // 
-            this.buttonTenma.Location = new System.Drawing.Point(618, 299);
+            this.buttonTenma.Location = new System.Drawing.Point(661, 629);
             this.buttonTenma.Name = "buttonTenma";
             this.buttonTenma.Size = new System.Drawing.Size(75, 23);
             this.buttonTenma.TabIndex = 110;
@@ -355,7 +364,7 @@
             // 
             // buttonCharge
             // 
-            this.buttonCharge.Location = new System.Drawing.Point(618, 328);
+            this.buttonCharge.Location = new System.Drawing.Point(661, 658);
             this.buttonCharge.Name = "buttonCharge";
             this.buttonCharge.Size = new System.Drawing.Size(75, 23);
             this.buttonCharge.TabIndex = 111;
@@ -365,7 +374,7 @@
             // 
             // buttonSwitch
             // 
-            this.buttonSwitch.Location = new System.Drawing.Point(618, 357);
+            this.buttonSwitch.Location = new System.Drawing.Point(661, 687);
             this.buttonSwitch.Name = "buttonSwitch";
             this.buttonSwitch.Size = new System.Drawing.Size(75, 23);
             this.buttonSwitch.TabIndex = 112;
@@ -373,11 +382,108 @@
             this.buttonSwitch.UseVisualStyleBackColor = true;
             this.buttonSwitch.Click += new System.EventHandler(this.button1_Click);
             // 
+            // groupBoxSwitch
+            // 
+            this.groupBoxSwitch.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.groupBoxSwitch.Controls.Add(this.checkBoxInc);
+            this.groupBoxSwitch.Controls.Add(this.checkBoxDec);
+            this.groupBoxSwitch.Controls.Add(this.checkBoxCfg);
+            this.groupBoxSwitch.Controls.Add(this.checkBox2B);
+            this.groupBoxSwitch.Controls.Add(this.checkBox2A);
+            this.groupBoxSwitch.Controls.Add(this.checkBox1B);
+            this.groupBoxSwitch.Controls.Add(this.checkBox1A);
+            this.groupBoxSwitch.Location = new System.Drawing.Point(557, 227);
+            this.groupBoxSwitch.Name = "groupBoxSwitch";
+            this.groupBoxSwitch.Size = new System.Drawing.Size(125, 198);
+            this.groupBoxSwitch.TabIndex = 113;
+            this.groupBoxSwitch.TabStop = false;
+            this.groupBoxSwitch.Text = "Switch test";
+            // 
+            // checkBox1A
+            // 
+            this.checkBox1A.AutoSize = true;
+            this.checkBox1A.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBox1A.ForeColor = System.Drawing.Color.Black;
+            this.checkBox1A.Location = new System.Drawing.Point(13, 28);
+            this.checkBox1A.Name = "checkBox1A";
+            this.checkBox1A.Size = new System.Drawing.Size(84, 17);
+            this.checkBox1A.TabIndex = 7;
+            this.checkBox1A.Text = "Side Left 1A";
+            this.checkBox1A.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1B
+            // 
+            this.checkBox1B.AutoSize = true;
+            this.checkBox1B.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBox1B.Location = new System.Drawing.Point(13, 51);
+            this.checkBox1B.Name = "checkBox1B";
+            this.checkBox1B.Size = new System.Drawing.Size(84, 17);
+            this.checkBox1B.TabIndex = 8;
+            this.checkBox1B.Text = "Side Left 1B";
+            this.checkBox1B.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2A
+            // 
+            this.checkBox2A.AutoSize = true;
+            this.checkBox2A.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBox2A.Location = new System.Drawing.Point(6, 74);
+            this.checkBox2A.Name = "checkBox2A";
+            this.checkBox2A.Size = new System.Drawing.Size(91, 17);
+            this.checkBox2A.TabIndex = 9;
+            this.checkBox2A.Text = "Side Right 2A";
+            this.checkBox2A.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2B
+            // 
+            this.checkBox2B.AutoSize = true;
+            this.checkBox2B.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBox2B.Location = new System.Drawing.Point(6, 97);
+            this.checkBox2B.Name = "checkBox2B";
+            this.checkBox2B.Size = new System.Drawing.Size(91, 17);
+            this.checkBox2B.TabIndex = 10;
+            this.checkBox2B.Text = "Side Right 2B";
+            this.checkBox2B.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxCfg
+            // 
+            this.checkBoxCfg.AutoSize = true;
+            this.checkBoxCfg.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBoxCfg.Location = new System.Drawing.Point(19, 120);
+            this.checkBoxCfg.Name = "checkBoxCfg";
+            this.checkBoxCfg.Size = new System.Drawing.Size(78, 17);
+            this.checkBoxCfg.TabIndex = 11;
+            this.checkBoxCfg.Text = "Central Cfg";
+            this.checkBoxCfg.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxDec
+            // 
+            this.checkBoxDec.AutoSize = true;
+            this.checkBoxDec.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBoxDec.Location = new System.Drawing.Point(8, 143);
+            this.checkBoxDec.Name = "checkBoxDec";
+            this.checkBoxDec.Size = new System.Drawing.Size(89, 17);
+            this.checkBoxDec.TabIndex = 12;
+            this.checkBoxDec.Text = "Rotative Dec";
+            this.checkBoxDec.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxInc
+            // 
+            this.checkBoxInc.AutoSize = true;
+            this.checkBoxInc.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBoxInc.Location = new System.Drawing.Point(13, 166);
+            this.checkBoxInc.Name = "checkBoxInc";
+            this.checkBoxInc.Size = new System.Drawing.Size(84, 17);
+            this.checkBoxInc.TabIndex = 13;
+            this.checkBoxInc.Text = "Rotative Inc";
+            this.checkBoxInc.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBoxInc.UseVisualStyleBackColor = true;
+            // 
             // P4CttTestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 727);
+            this.Controls.Add(this.groupBoxSwitch);
             this.Controls.Add(this.buttonSwitch);
             this.Controls.Add(this.buttonCharge);
             this.Controls.Add(this.buttonTenma);
@@ -413,6 +519,8 @@
             this.Name = "P4CttTestForm";
             this.Text = "P4 CTT 4 Test";
             this.Load += new System.EventHandler(this.P4CttTestForm_Load);
+            this.groupBoxSwitch.ResumeLayout(false);
+            this.groupBoxSwitch.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -455,6 +563,14 @@
         private System.Windows.Forms.Button buttonTenma;
         private System.Windows.Forms.Button buttonCharge;
         private System.Windows.Forms.Button buttonSwitch;
+        private System.Windows.Forms.GroupBox groupBoxSwitch;
+        private System.Windows.Forms.CheckBox checkBoxInc;
+        private System.Windows.Forms.CheckBox checkBoxDec;
+        private System.Windows.Forms.CheckBox checkBoxCfg;
+        private System.Windows.Forms.CheckBox checkBox2B;
+        private System.Windows.Forms.CheckBox checkBox2A;
+        private System.Windows.Forms.CheckBox checkBox1B;
+        private System.Windows.Forms.CheckBox checkBox1A;
     }
 }
 
