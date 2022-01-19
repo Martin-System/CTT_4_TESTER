@@ -26,7 +26,8 @@ namespace CTT_4_TESTER
             DEC_CW,
             DECP_CX,
             PAIRING,
-            TEST_RSSI
+            TEST_RSSI,
+            LISTEN
         }
 
         private string status = "error";
@@ -96,6 +97,10 @@ namespace CTT_4_TESTER
                     }
                     rssiTxAvg /= 10;
                     rssiRxAvg /= 10;
+                    break;
+                case CMD.LISTEN:
+                    ret = msSerialPort.sendStrUartCmd("SX L\r\n", "#>");
+                    CheckStringOk(ret);
                     break;
             }
 

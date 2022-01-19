@@ -54,12 +54,14 @@ namespace CTT_4_TESTER
                 if (match.Contains("OK"))
                 {
                     status = "OK";
+                    return;
                 }
                 else
                 {
-                    throw new Exception("Error in the STR for Version " + str);
+                    
                 }
             }
+            throw new Exception("Error in the STR for Buzzer " + str);
         }
 
         public string toString()

@@ -656,6 +656,8 @@ namespace CTT_4_TESTER
                 /********************************/
                 //Check Switch 
                 /********************************/
+                QuestionToUser("Press OK en after press every switch of the remote");
+
                 PushButton pushButton = new PushButton(msSerialPortToCheck);
                 if (pushButton.waitStatus(msSerialPortToCheck, this, 20000))
                     SetText(textBoxLog, "pushButton" + pushButton.toString() + "\r\n");
@@ -717,10 +719,13 @@ namespace CTT_4_TESTER
                     e.Result = "Error RF - Check PCB and restart test";
                     return;
                 }
-                
+
                 /********************************/
                 //  Check SX : TX and RX RSSI
                 /********************************/
+                Sx sSxGolden = new Sx(msSerialPortGolden, Sx.CMD.LISTEN);
+                SetText(textBoxLog, "Golden Listen" + sSxGolden.toStringRSSI());
+
                 sSx = new Sx(msSerialPortToCheck, Sx.CMD.TEST_RSSI);
                 SetText(textBoxLog, "TEST RSSI" + sSx.toStringRSSI());
 
@@ -746,21 +751,32 @@ namespace CTT_4_TESTER
                 p4Relay.setUsbCharging(true);
                 if(charge.waitStatus(msSerialPortToCheck, Charge.Charging.WIRE, 2000))
                     SetText(textBoxLog, "test charge OK " + Charge.Charging.WIRE + "\r\n");
+                Thread.Sleep(500);
+
                 tenma.setVoltage(4.8f);
                 if (charge.waitStatus(msSerialPortToCheck, Charge.Charging.WIRE_CHARGED, 2000))
                     SetText(textBoxLog, "test charge OK " + Charge.Charging.WIRE_CHARGED + "\r\n");
+                Thread.Sleep(500);
+
                 tenma.setVoltage(4.2f);
 
                 p4Relay.setUsbCharging(false);
                 if (charge.waitStatus(msSerialPortToCheck, Charge.Charging.NO_OP, 1000))
                     SetText(textBoxLog, "test charge OK " + Charge.Charging.NO_OP + "\r\n");
+                Thread.Sleep(500);
 
                 p4Relay.setWpcCharging(true);
+
+                QuestionToUser("Make sure the self is correctly aligned on the wireless charger");
+
                 if (charge.waitStatus(msSerialPortToCheck, Charge.Charging.WPC, 5000))
                     SetText(textBoxLog, "test charge OK " + Charge.Charging.WPC + "\r\n");
+                Thread.Sleep(500);
+
                 tenma.setVoltage(4.8f);
                 if (charge.waitStatus(msSerialPortToCheck, Charge.Charging.WPC_CHARGED, 2000))
                     SetText(textBoxLog, "test charge OK " + Charge.Charging.WPC_CHARGED + "\r\n");
+                Thread.Sleep(500);
 
                 tenma.setVoltage(4.2f);
                 p4Relay.setWpcCharging(false);
@@ -768,7 +784,7 @@ namespace CTT_4_TESTER
                     SetText(textBoxLog, "test charge OK " + Charge.Charging.NO_OP + "\r\n");
                 p4Relay.setStandby();
 
-                Thread.Sleep(4000);
+                Thread.Sleep(1000);
 
 
                 /********************************/

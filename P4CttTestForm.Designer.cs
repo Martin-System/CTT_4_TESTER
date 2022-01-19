@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(P4CttTestForm));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.buttonWpc = new System.Windows.Forms.Button();
             this.textBoxFileName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -276,7 +276,7 @@
             // 
             this.labelStatus.AutoSize = true;
             this.labelStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelStatus.Location = new System.Drawing.Point(10, 270);
+            this.labelStatus.Location = new System.Drawing.Point(500, 298);
             this.labelStatus.Name = "labelStatus";
             this.labelStatus.Size = new System.Drawing.Size(204, 31);
             this.labelStatus.TabIndex = 85;
@@ -489,18 +489,18 @@
             // 
             // chartSpectrum
             // 
-            chartArea2.Name = "ChartArea";
-            this.chartSpectrum.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chartSpectrum.Legends.Add(legend2);
+            chartArea3.Name = "ChartArea";
+            this.chartSpectrum.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chartSpectrum.Legends.Add(legend3);
             this.chartSpectrum.Location = new System.Drawing.Point(7, 531);
             this.chartSpectrum.Name = "chartSpectrum";
-            series2.ChartArea = "ChartArea";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.IsVisibleInLegend = false;
-            series2.Legend = "Legend1";
-            series2.Name = "SeriesSpectrum";
-            this.chartSpectrum.Series.Add(series2);
+            series3.ChartArea = "ChartArea";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series3.IsVisibleInLegend = false;
+            series3.Legend = "Legend1";
+            series3.Name = "SeriesSpectrum";
+            this.chartSpectrum.Series.Add(series3);
             this.chartSpectrum.Size = new System.Drawing.Size(1020, 184);
             this.chartSpectrum.TabIndex = 114;
             this.chartSpectrum.Text = "chart1";
