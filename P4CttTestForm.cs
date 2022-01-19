@@ -21,15 +21,19 @@ namespace CTT_4_TESTER
         MsSerialPort msSerialPortGolden;
         Psoc6Program p4Program;
         Tenma tenma;
+        Spectrum spectrum;
+
+        
 
         int deviceNumber = 0;
         P4Relay p4Relay;
         P4Adc p4Adc;
 
         string fileName = String.Empty;
-
         string comPortCheck = null;
 
+        float[] dataX = null;
+        float[] dataY = null;
 
 
         public P4CttTestForm()
@@ -58,6 +62,15 @@ namespace CTT_4_TESTER
             System.Diagnostics.Trace.WriteLine("Tenma ok");
             UpdateComPortToChecTenma();
             UI_enableTenma();
+
+            try
+            {
+                spectrum = new Spectrum();
+            }
+            catch (Exception exc)
+            {
+                SetLabel(labelStatus, "" + exc.Message);
+            }
         }
 
         private void P4CttTestForm_Load(object sender, EventArgs e)
@@ -533,6 +546,24 @@ namespace CTT_4_TESTER
             EnableCheckBox(checkBoxInc, stat[6]);
         }
 
+        private bool QuestionToUser(string textToDispaly)
+        {
+            bool ret = true;
+            string message = textToDispaly;
+            const string caption = "Tester check";
+            var result = MessageBox.Show(message, caption,
+                                         MessageBoxButtons.YesNo,
+                                         MessageBoxIcon.Question);
+
+            // If the no button was pressed ...
+            if (result == DialogResult.No)
+            {
+                ret = false;
+            }
+
+            return ret;
+        }
+
         /***************************************************/
         //SERIAL Number modified
         /***************************************************/
@@ -623,6 +654,13 @@ namespace CTT_4_TESTER
                 ClearAndSetText(textBoxFirmware, sVersion.firmware_version);
 
                 /********************************/
+                //Check Switch 
+                /********************************/
+                PushButton pushButton = new PushButton(msSerialPortToCheck);
+                if (pushButton.waitStatus(msSerialPortToCheck, this, 20000))
+                    SetText(textBoxLog, "pushButton" + pushButton.toString() + "\r\n");
+
+                /********************************/
                 //Check Battery ADC 
                 /********************************/
                 SetLabel(labelStatus, "TEST BATTERY");
@@ -640,6 +678,61 @@ namespace CTT_4_TESTER
                     return;
                 }
                 SetLabel(labelStatus, "BATTERY OK");
+
+                /********************************/
+                //  Check SX Carrier Wave
+                /********************************/
+
+                Sx.CMD sxCmd = Sx.CMD.START_CW;
+
+                //UI_enableCw();
+                SetLabel(labelStatus, "Must centered the central frequency");
+                dataY = null;
+                dataX = null;
+                Sx sSx = new Sx(msSerialPortToCheck, sxCmd);
+                SetText(textBoxLog, "SxCarrier " + sSx.toString() + "\r\n");
+                Thread.Sleep(100);
+                double freqCenterMHz = 0;
+                double? peakCenter_dBm = null;
+                spectrum.GetPeakSpectrum(ref freqCenterMHz, ref peakCenter_dBm, ref dataX, ref dataY);
+                SetChartData(chartSpectrum, dataX, dataY);
+                sSx = new Sx(msSerialPortToCheck, freqCenterMHz);
+                Thread.Sleep(100);
+
+                spectrum.GetPeakSpectrum(ref freqCenterMHz, ref peakCenter_dBm, ref dataX, ref dataY);
+                SetChartData(chartSpectrum, dataX, dataY);
+                sSx = new Sx(msSerialPortToCheck, freqCenterMHz);
+                Thread.Sleep(100);
+
+                spectrum.GetPeakSpectrum(ref freqCenterMHz, ref peakCenter_dBm, ref dataX, ref dataY);
+                SetChartData(chartSpectrum, dataX, dataY);
+
+                if (QuestionToUser("Is Peak central?") == true)
+                {
+                    SetText(textBoxLog, "RF Calibration OK");
+                }
+                else
+                {
+                    SetText(textBoxLog, "RF Calibration NOK");
+                    e.Result = "Error RF - Check PCB and restart test";
+                    return;
+                }
+                
+                /********************************/
+                //  Check SX : TX and RX RSSI
+                /********************************/
+                sSx = new Sx(msSerialPortToCheck, Sx.CMD.TEST_RSSI);
+                SetText(textBoxLog, "TEST RSSI" + sSx.toStringRSSI());
+
+                if (!sSx.IsRssiOk())
+                {
+                    SetText(textBoxLog, "Radio RSSI is too low Error");
+                    e.Result = " Radio RSSI not correct";
+                    return;
+                }
+                SetLabel(labelStatus, "Radio RSSI OK");
+
+                
 
                 /********************************/
                 //Check Battery ADC 
@@ -677,12 +770,21 @@ namespace CTT_4_TESTER
 
                 Thread.Sleep(4000);
 
+
                 /********************************/
-                //Check Switch 
+                //Test FK Communication 
                 /********************************/
-                PushButton pushButton = new PushButton(msSerialPortToCheck);
-                if (pushButton.waitStatus(msSerialPortToCheck, this, 20000))
-                    SetText(textBoxLog, "pushButton" + pushButton.toString() + "\r\n");
+                QuestionToUser("Press OK and use the Finger Kick");
+
+                Fk fk = new Fk(msSerialPortToCheck);
+                if(fk.IsRssiOk())
+                    SetText(textBoxLog, "FK" + fk.toString() + "\r\n");
+                else
+                {
+                    SetText(textBoxLog, "FK Radio too low");
+                    e.Result = " FK RSSI not correct";
+                    return;
+                }
             }
             catch (Exception exc)
             {
@@ -792,6 +894,19 @@ namespace CTT_4_TESTER
             PushButton pushButton = new PushButton(msSerialPortToCheck);
             if (pushButton.waitStatus(msSerialPortToCheck, this, 20000))
                 SetText(textBoxLog, "pushButton" + pushButton.toString() + "\r\n");
+        }
+
+        private void buttonSxTx_Click(object sender, EventArgs e)
+        {
+            Sx sSx = new Sx(msSerialPortToCheck, Sx.CMD.TEST_RSSI);
+            SetText(textBoxLog, "TEST RSSI" + sSx.toStringRSSI());
+
+            if (!sSx.IsRssiOk())
+            {
+                SetText(textBoxLog, "Radio RSSI is too low Error");
+                return;
+            }
+            SetLabel(labelStatus, "Radio RSSI OK");
         }
     }
 }
