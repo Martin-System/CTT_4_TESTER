@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Battery.cs" />
     <Compile Include="bb_api.cs" />
+    <Compile Include="Buzzer.cs" />
     <Compile Include="Charge.cs" />
     <Compile Include="Fk.cs" />
     <Compile Include="MsSerialPort.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Sx.cs" />
     <Compile Include="Tenma.cs" />
     <Compile Include="Version.cs" />
+    <Compile Include="Vibration.cs" />
     <EmbeddedResource Include="P4CttTestForm.resx">
       <DependentUpon>P4CttTestForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 
-namespace P4_TestCollar
+namespace CTT_4_TESTER
 {
     class Buzzer
     {

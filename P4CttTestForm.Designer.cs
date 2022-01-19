@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(P4CttTestForm));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.buttonWpc = new System.Windows.Forms.Button();
             this.textBoxFileName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -78,13 +78,16 @@
             this.checkBox1A = new System.Windows.Forms.CheckBox();
             this.chartSpectrum = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.buttonSxTx = new System.Windows.Forms.Button();
+            this.buttonFk = new System.Windows.Forms.Button();
+            this.buttonVib = new System.Windows.Forms.Button();
+            this.buttonBuzzer = new System.Windows.Forms.Button();
             this.groupBoxSwitch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartSpectrum)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonWpc
             // 
-            this.buttonWpc.Location = new System.Drawing.Point(918, 270);
+            this.buttonWpc.Location = new System.Drawing.Point(915, 196);
             this.buttonWpc.Name = "buttonWpc";
             this.buttonWpc.Size = new System.Drawing.Size(75, 23);
             this.buttonWpc.TabIndex = 106;
@@ -322,7 +325,7 @@
             // 
             // buttonUSB
             // 
-            this.buttonUSB.Location = new System.Drawing.Point(918, 299);
+            this.buttonUSB.Location = new System.Drawing.Point(915, 225);
             this.buttonUSB.Name = "buttonUSB";
             this.buttonUSB.Size = new System.Drawing.Size(75, 23);
             this.buttonUSB.TabIndex = 107;
@@ -332,7 +335,7 @@
             // 
             // buttonADC
             // 
-            this.buttonADC.Location = new System.Drawing.Point(918, 328);
+            this.buttonADC.Location = new System.Drawing.Point(915, 254);
             this.buttonADC.Name = "buttonADC";
             this.buttonADC.Size = new System.Drawing.Size(75, 23);
             this.buttonADC.TabIndex = 108;
@@ -350,7 +353,7 @@
             // 
             // buttonProgram
             // 
-            this.buttonProgram.Location = new System.Drawing.Point(918, 358);
+            this.buttonProgram.Location = new System.Drawing.Point(915, 284);
             this.buttonProgram.Name = "buttonProgram";
             this.buttonProgram.Size = new System.Drawing.Size(75, 23);
             this.buttonProgram.TabIndex = 109;
@@ -360,7 +363,7 @@
             // 
             // buttonTenma
             // 
-            this.buttonTenma.Location = new System.Drawing.Point(918, 387);
+            this.buttonTenma.Location = new System.Drawing.Point(915, 313);
             this.buttonTenma.Name = "buttonTenma";
             this.buttonTenma.Size = new System.Drawing.Size(75, 23);
             this.buttonTenma.TabIndex = 110;
@@ -370,7 +373,7 @@
             // 
             // buttonCharge
             // 
-            this.buttonCharge.Location = new System.Drawing.Point(918, 416);
+            this.buttonCharge.Location = new System.Drawing.Point(915, 342);
             this.buttonCharge.Name = "buttonCharge";
             this.buttonCharge.Size = new System.Drawing.Size(75, 23);
             this.buttonCharge.TabIndex = 111;
@@ -380,7 +383,7 @@
             // 
             // buttonSwitch
             // 
-            this.buttonSwitch.Location = new System.Drawing.Point(918, 445);
+            this.buttonSwitch.Location = new System.Drawing.Point(915, 371);
             this.buttonSwitch.Name = "buttonSwitch";
             this.buttonSwitch.Size = new System.Drawing.Size(75, 23);
             this.buttonSwitch.TabIndex = 112;
@@ -398,7 +401,7 @@
             this.groupBoxSwitch.Controls.Add(this.checkBox2A);
             this.groupBoxSwitch.Controls.Add(this.checkBox1B);
             this.groupBoxSwitch.Controls.Add(this.checkBox1A);
-            this.groupBoxSwitch.Location = new System.Drawing.Point(762, 275);
+            this.groupBoxSwitch.Location = new System.Drawing.Point(759, 201);
             this.groupBoxSwitch.Name = "groupBoxSwitch";
             this.groupBoxSwitch.Size = new System.Drawing.Size(125, 198);
             this.groupBoxSwitch.TabIndex = 113;
@@ -486,25 +489,25 @@
             // 
             // chartSpectrum
             // 
-            chartArea1.Name = "ChartArea";
-            this.chartSpectrum.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartSpectrum.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea";
+            this.chartSpectrum.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartSpectrum.Legends.Add(legend2);
             this.chartSpectrum.Location = new System.Drawing.Point(7, 531);
             this.chartSpectrum.Name = "chartSpectrum";
-            series1.ChartArea = "ChartArea";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.IsVisibleInLegend = false;
-            series1.Legend = "Legend1";
-            series1.Name = "SeriesSpectrum";
-            this.chartSpectrum.Series.Add(series1);
+            series2.ChartArea = "ChartArea";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.IsVisibleInLegend = false;
+            series2.Legend = "Legend1";
+            series2.Name = "SeriesSpectrum";
+            this.chartSpectrum.Series.Add(series2);
             this.chartSpectrum.Size = new System.Drawing.Size(1020, 184);
             this.chartSpectrum.TabIndex = 114;
             this.chartSpectrum.Text = "chart1";
             // 
             // buttonSxTx
             // 
-            this.buttonSxTx.Location = new System.Drawing.Point(918, 474);
+            this.buttonSxTx.Location = new System.Drawing.Point(915, 400);
             this.buttonSxTx.Name = "buttonSxTx";
             this.buttonSxTx.Size = new System.Drawing.Size(75, 23);
             this.buttonSxTx.TabIndex = 115;
@@ -512,11 +515,44 @@
             this.buttonSxTx.UseVisualStyleBackColor = true;
             this.buttonSxTx.Click += new System.EventHandler(this.buttonSxTx_Click);
             // 
+            // buttonFk
+            // 
+            this.buttonFk.Location = new System.Drawing.Point(915, 429);
+            this.buttonFk.Name = "buttonFk";
+            this.buttonFk.Size = new System.Drawing.Size(75, 23);
+            this.buttonFk.TabIndex = 116;
+            this.buttonFk.Text = "Finger Kick";
+            this.buttonFk.UseVisualStyleBackColor = true;
+            this.buttonFk.Click += new System.EventHandler(this.buttonFk_Click);
+            // 
+            // buttonVib
+            // 
+            this.buttonVib.Location = new System.Drawing.Point(915, 458);
+            this.buttonVib.Name = "buttonVib";
+            this.buttonVib.Size = new System.Drawing.Size(75, 23);
+            this.buttonVib.TabIndex = 117;
+            this.buttonVib.Text = "Vibration";
+            this.buttonVib.UseVisualStyleBackColor = true;
+            this.buttonVib.Click += new System.EventHandler(this.buttonVib_Click);
+            // 
+            // buttonBuzzer
+            // 
+            this.buttonBuzzer.Location = new System.Drawing.Point(915, 487);
+            this.buttonBuzzer.Name = "buttonBuzzer";
+            this.buttonBuzzer.Size = new System.Drawing.Size(75, 23);
+            this.buttonBuzzer.TabIndex = 118;
+            this.buttonBuzzer.Text = "Buzzer";
+            this.buttonBuzzer.UseVisualStyleBackColor = true;
+            this.buttonBuzzer.Click += new System.EventHandler(this.buttonBuzzer_Click);
+            // 
             // P4CttTestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1036, 727);
+            this.Controls.Add(this.buttonBuzzer);
+            this.Controls.Add(this.buttonVib);
+            this.Controls.Add(this.buttonFk);
             this.Controls.Add(this.buttonSxTx);
             this.Controls.Add(this.chartSpectrum);
             this.Controls.Add(this.groupBoxSwitch);
@@ -610,6 +646,9 @@
         private System.Windows.Forms.CheckBox checkBox1A;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartSpectrum;
         private System.Windows.Forms.Button buttonSxTx;
+        private System.Windows.Forms.Button buttonFk;
+        private System.Windows.Forms.Button buttonVib;
+        private System.Windows.Forms.Button buttonBuzzer;
     }
 }
 

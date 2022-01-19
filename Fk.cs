@@ -75,7 +75,7 @@ namespace CTT_4_TESTER
 
             foreach (string match in substrings)
             {
-                if (match.Contains("SX"))
+                if (match.Contains("FK"))
                 {
                     string sub = match.Substring(1, match.Length - 2);
                     string[] spl = sub.Split(' ');

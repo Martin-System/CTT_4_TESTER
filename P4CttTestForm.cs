@@ -785,6 +785,50 @@ namespace CTT_4_TESTER
                     e.Result = " FK RSSI not correct";
                     return;
                 }
+
+                /********************************/
+                //Test BUZZER
+                /********************************/
+
+                Buzzer sBuzzer = new Buzzer(msSerialPortToCheck, 1);
+                SetText(textBoxLog, "BUZZER " + sBuzzer.toString() + "\r\n");
+
+                if (QuestionToUser("Do you heard the buzzer?") == true)
+                {
+                    SetText(textBoxLog, "Buzzer OK");
+                }
+                else
+                {
+                    SetText(textBoxLog, "Buzzer NOK");
+                    e.Result = "Error BUZER - Check them and restart test";
+                    return;
+                }
+                sBuzzer = new Buzzer(msSerialPortToCheck, 0);
+                SetText(textBoxLog, "BUZZER " + sBuzzer.toString() + "\r\n");
+                SetLabel(labelStatus, "BUZZER OK");
+
+
+                /********************************/
+                //Test Vibration
+                /********************************/
+
+
+                Vibration sVib = new Vibration(msSerialPortToCheck, 1);
+                SetText(textBoxLog, "VIBRATION " + sVib.toString() + "\r\n");
+
+                if (QuestionToUser("Do you feel the vibration?") == true)
+                {
+                    SetText(textBoxLog, "vibration OK");
+                }
+                else
+                {
+                    SetText(textBoxLog, "vibration NOK");
+                    e.Result = "Error Vibration - Check them and restart test";
+                    return;
+                }
+                sVib = new Vibration(msSerialPortToCheck, 0);
+                SetText(textBoxLog, "VIBRATION " + sVib.toString() + "\r\n");
+                SetLabel(labelStatus, "VIBRATION OK");
             }
             catch (Exception exc)
             {
@@ -907,6 +951,58 @@ namespace CTT_4_TESTER
                 return;
             }
             SetLabel(labelStatus, "Radio RSSI OK");
+        }
+
+        private void buttonFk_Click(object sender, EventArgs e)
+        {
+            QuestionToUser("Press OK and use the Finger Kick");
+
+            Fk fk = new Fk(msSerialPortToCheck);
+            if (fk.IsRssiOk())
+                SetText(textBoxLog, "FK" + fk.toString() + "\r\n");
+            else
+            {
+                SetText(textBoxLog, "FK Radio too low");
+                return;
+            }
+        }
+
+        private void buttonVib_Click(object sender, EventArgs e)
+        {
+            Vibration sVib = new Vibration(msSerialPortToCheck, 1);
+            SetText(textBoxLog, "VIBRATION " + sVib.toString() + "\r\n");
+
+            if (QuestionToUser("Do you feel the vibration?") == true)
+            {
+                SetText(textBoxLog, "vibration OK");
+            }
+            else
+            {
+                SetText(textBoxLog, "vibration NOK");
+                return;
+            }
+            sVib = new Vibration(msSerialPortToCheck, 0);
+            SetText(textBoxLog, "VIBRATION " + sVib.toString() + "\r\n");
+            SetLabel(labelStatus, "VIBRATION OK");
+        }
+
+        private void buttonBuzzer_Click(object sender, EventArgs e)
+        {
+            Buzzer sBuzzer = new Buzzer(msSerialPortToCheck, 1);
+            SetText(textBoxLog, "BUZZER " + sBuzzer.toString() + "\r\n");
+
+            if (QuestionToUser("Do you heard the buzzer?") == true)
+            {
+                SetText(textBoxLog, "Buzzer OK");
+            }
+            else
+            {
+                SetText(textBoxLog, "Buzzer NOK");
+                return;
+            }
+            sBuzzer = new Buzzer(msSerialPortToCheck, 0);
+            SetText(textBoxLog, "BUZZER " + sBuzzer.toString() + "\r\n");
+            SetLabel(labelStatus, "BUZZER OK");
         }
     }
 }
