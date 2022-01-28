@@ -874,18 +874,31 @@ namespace CTT_4_TESTER
         static bool stateWPC = false;
         private void buttonWPC_Click(object sender, EventArgs e)
         {
-            if (stateWPC) stateWPC = false;
+            if (stateWPC)
+            {
+                stateWPC = false;
+            }
             else stateWPC = true;
             p4Relay.setWpcCharging(stateWPC);
+            if (!stateWPC)
+            {
+                p4Relay.setStandby();
+            }
 
         }
 
         private void buttonUSB_Click(object sender, EventArgs e)
         {
-            if (stateUSB) stateUSB = false;
+            if (stateUSB)
+            {
+                stateUSB = false;
+            }
             else stateUSB = true;
             p4Relay.setUsbCharging(stateUSB);
-
+            if (!stateUSB)
+            {
+                p4Relay.setStandby();
+            }
         }
 
         private void buttonADC_Click(object sender, EventArgs e)
