@@ -1046,6 +1046,8 @@ namespace CTT_4_TESTER
         {
             Mac sMac = new Mac(msSerialPortGolden,MacAddress);
             SetText(textBoxLog, "Mac " + sMac.toString() + "\r\n");
+            Ble sBle = new Ble(msSerialPortGolden);
+            SetText(textBoxLog, "Ble " + sBle.toString() + "\r\n");
         }
     }
 }

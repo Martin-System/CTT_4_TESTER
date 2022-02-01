@@ -28,14 +28,15 @@ namespace CTT_4_TESTER
             int errorTx = 0;
             for (int i = 0; i < (10 + errorTx); i++)
             {                
-                ret = msSerialPort.sendStrUartCmd("BLE R\r\n", "#>");
+                ret = msSerialPort.sendStrUartCmd("READ 24\r\n", "#>");
+                CheckStringOk(ret);
                 if (ret == null)
                 {
                     throw new Exception("Erreur de communication UART");
                 }
                 try
                 {
-                    ret = msSerialPort.uartReadStringAndContains("RSSI_BLE", ">");
+                    ret = msSerialPort.uartReadStringAndContains("READ", ">");
                     CheckString(ret);
                     valueAvg += value;
                 }
@@ -51,13 +52,33 @@ namespace CTT_4_TESTER
             }
             valueAvg /= 10;
 
-            
+            if(valueAvg<-70) throw new Exception("Error RSSI BLE");
+
         }
 
         public Ble(string str)
         {
             this.error = null;
             CheckString(str);
+        }
+        private void CheckStringOk(string str)
+        {
+            uint i = 0;
+            string[] substrings = Regex.Matches(str, @"<([A-Za-z0-9 _.-]+)>").Cast<Match>().Select(m => m.Value).ToArray();
+
+            // <OK>
+
+            foreach (string match in substrings)
+            {
+                if (match.Contains("OK"))
+                {
+                    error = "OK";
+                }
+                else
+                {
+                    throw new Exception("Error in the STR for MAC " + str);
+                }
+            }
         }
 
         private void CheckString(string str)
@@ -69,14 +90,14 @@ namespace CTT_4_TESTER
 
             foreach (string match in substrings)
             {
-                if (match.Contains("RSSI_BLE"))
+                if (match.Contains("READ"))
                 {
                     string sub = match.Substring(1, match.Length - 2);
                     string[] spl = sub.Split(' ');
                     CultureInfo provider = CultureInfo.InvariantCulture;
-                    if (spl.Length == 2 && int.TryParse(spl[1], NumberStyles.Integer, provider, out int level))
+                    if (spl.Length == 3 && int.TryParse(spl[2], NumberStyles.HexNumber, provider, out int level))
                     {
-                        value = level;
+                        value = level-256;  //negative hex
                     }
                     else
                     {
