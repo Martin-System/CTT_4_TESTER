@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(P4CttTestForm));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.buttonWpc = new System.Windows.Forms.Button();
             this.textBoxFileName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -62,8 +62,6 @@
             this.BgW_Test = new System.ComponentModel.BackgroundWorker();
             this.buttonUSB = new System.Windows.Forms.Button();
             this.buttonADC = new System.Windows.Forms.Button();
-            this.instantDoCtrl1 = new Automation.BDaq.InstantDoCtrl(this.components);
-            this.instantAiCtrl1 = new Automation.BDaq.InstantAiCtrl(this.components);
             this.buttonProgram = new System.Windows.Forms.Button();
             this.buttonTenma = new System.Windows.Forms.Button();
             this.buttonCharge = new System.Windows.Forms.Button();
@@ -81,6 +79,8 @@
             this.buttonFk = new System.Windows.Forms.Button();
             this.buttonVib = new System.Windows.Forms.Button();
             this.buttonBuzzer = new System.Windows.Forms.Button();
+            this.instantDoCtrl1 = new Automation.BDaq.InstantDoCtrl(this.components);
+            this.instantAiCtrl1 = new Automation.BDaq.InstantAiCtrl(this.components);
             this.groupBoxSwitch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartSpectrum)).BeginInit();
             this.SuspendLayout();
@@ -343,14 +343,6 @@
             this.buttonADC.UseVisualStyleBackColor = true;
             this.buttonADC.Click += new System.EventHandler(this.buttonADC_Click);
             // 
-            // instantDoCtrl1
-            // 
-            this.instantDoCtrl1._StateStream = ((Automation.BDaq.DeviceStateStreamer)(resources.GetObject("instantDoCtrl1._StateStream")));
-            // 
-            // instantAiCtrl1
-            // 
-            this.instantAiCtrl1._StateStream = ((Automation.BDaq.DeviceStateStreamer)(resources.GetObject("instantAiCtrl1._StateStream")));
-            // 
             // buttonProgram
             // 
             this.buttonProgram.Location = new System.Drawing.Point(915, 284);
@@ -489,18 +481,18 @@
             // 
             // chartSpectrum
             // 
-            chartArea3.Name = "ChartArea";
-            this.chartSpectrum.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chartSpectrum.Legends.Add(legend3);
+            chartArea1.Name = "ChartArea";
+            this.chartSpectrum.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartSpectrum.Legends.Add(legend1);
             this.chartSpectrum.Location = new System.Drawing.Point(7, 531);
             this.chartSpectrum.Name = "chartSpectrum";
-            series3.ChartArea = "ChartArea";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series3.IsVisibleInLegend = false;
-            series3.Legend = "Legend1";
-            series3.Name = "SeriesSpectrum";
-            this.chartSpectrum.Series.Add(series3);
+            series1.ChartArea = "ChartArea";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.IsVisibleInLegend = false;
+            series1.Legend = "Legend1";
+            series1.Name = "SeriesSpectrum";
+            this.chartSpectrum.Series.Add(series1);
             this.chartSpectrum.Size = new System.Drawing.Size(1020, 184);
             this.chartSpectrum.TabIndex = 114;
             this.chartSpectrum.Text = "chart1";
@@ -544,6 +536,14 @@
             this.buttonBuzzer.Text = "Buzzer";
             this.buttonBuzzer.UseVisualStyleBackColor = true;
             this.buttonBuzzer.Click += new System.EventHandler(this.buttonBuzzer_Click);
+            // 
+            // instantDoCtrl1
+            // 
+            this.instantDoCtrl1._StateStream = ((Automation.BDaq.DeviceStateStreamer)(resources.GetObject("instantDoCtrl1._StateStream")));
+            // 
+            // instantAiCtrl1
+            // 
+            this.instantAiCtrl1._StateStream = ((Automation.BDaq.DeviceStateStreamer)(resources.GetObject("instantAiCtrl1._StateStream")));
             // 
             // P4CttTestForm
             // 
@@ -630,8 +630,6 @@
         private System.ComponentModel.BackgroundWorker BgW_Test;
         private System.Windows.Forms.Button buttonUSB;
         private System.Windows.Forms.Button buttonADC;
-        private Automation.BDaq.InstantDoCtrl instantDoCtrl1;
-        private Automation.BDaq.InstantAiCtrl instantAiCtrl1;
         private System.Windows.Forms.Button buttonProgram;
         private System.Windows.Forms.Button buttonTenma;
         private System.Windows.Forms.Button buttonCharge;
@@ -649,6 +647,8 @@
         private System.Windows.Forms.Button buttonFk;
         private System.Windows.Forms.Button buttonVib;
         private System.Windows.Forms.Button buttonBuzzer;
+        private Automation.BDaq.InstantDoCtrl instantDoCtrl1;
+        private Automation.BDaq.InstantAiCtrl instantAiCtrl1;
     }
 }
 

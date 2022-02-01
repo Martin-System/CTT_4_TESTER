@@ -33,9 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Automation.BDaq4, Version=4.0.0.0, Culture=neutral, PublicKeyToken=463f5928d60183a0, processorArchitecture=MSIL">
+    <Reference Include="Automation.BDaq, Version=1.0.1.0, Culture=neutral, PublicKeyToken=463f5928d60183a0, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\..\..\Windows\assembly\GAC_MSIL\Automation.BDaq4\4.0.0.0__463f5928d60183a0\Automation.BDaq4.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\..\Advantech\DAQNavi\Automation.BDaq\1.0.0.0\Automation.BDaq.dll</HintPath>
     </Reference>
     <Reference Include="PP_COM_Wrapper">
       <HintPath>..\..\..\..\..\..\..\..\..\Program Files (x86)\Cypress\Programmer\PP_COM_Wrapper.dll</HintPath>
