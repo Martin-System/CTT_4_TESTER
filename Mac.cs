@@ -7,12 +7,13 @@ using System.Threading;
 using System.Text.RegularExpressions;
 using System.Globalization;
 
-namespace P4_TestCollar
+namespace CTT_4_TESTER
 {
     class Mac
     {
-        public string value;
-        public bool connected;
+        public string publicAddress;
+        public bool connected = false;
+
         private string error = null;
 
         public Mac(MsSerialPort msSerialPort)
@@ -25,10 +26,12 @@ namespace P4_TestCollar
                 //return;
             }
             ret = msSerialPort.sendStrUartCmd("MAC\r\n", "#>");
+            CheckStringOk(ret);
             if (ret == null)
             {
                 throw new Exception("Erreur de communication UART");
             }
+            ret = msSerialPort.uartReadStringAndContains("MAC", ">");
             CheckString(ret);
         }
 
@@ -36,18 +39,35 @@ namespace P4_TestCollar
         {
             string ret;
             this.error = null;
+            connected = false;
             if (msSerialPort.sendStrUartCmd("m\r\n", "#>") == null)
             {
                 throw new Exception("Erreur de communication UART");
                 //return;
             }
             ret = msSerialPort.sendStrUartCmd("MAC " + macAddress + "\r\n", "#>");
+            CheckStringOk(ret);
             if (ret == null)
             {
                 throw new Exception("Erreur de communication UART");
             }
+            
             Thread.Sleep(1000);
             uint i;
+            for (i = 0; i < 5; i++)
+            {
+                try
+                {
+                    ret = msSerialPort.uartReadStringAndContains("MAC", ">");
+                    break;
+                }
+                catch (Exception exc)
+                {
+                    if (i == 4) throw new Exception("error connection BLE", exc);
+                }
+            }
+            CheckString(ret);
+
             for (i = 0; i < 5; i++) 
             { 
                 try
@@ -61,12 +81,33 @@ namespace P4_TestCollar
                 }
             }
             CheckStringConnected(ret);
+            connected = true;
         }
 
         public Mac(string str)
         {
             this.error = null;
             CheckString(str);
+        }
+
+        private void CheckStringOk(string str)
+        {
+            uint i = 0;
+            string[] substrings = Regex.Matches(str, @"<([A-Za-z0-9 _.-]+)>").Cast<Match>().Select(m => m.Value).ToArray();
+
+            // <OK>
+
+            foreach (string match in substrings)
+            {
+                if (match.Contains("OK"))
+                {
+                    error = "OK";
+                }
+                else
+                {
+                    throw new Exception("Error in the STR for MAC " + str);
+                }
+            }
         }
 
         private void CheckString(string str)
@@ -85,7 +126,7 @@ namespace P4_TestCollar
                     CultureInfo provider = CultureInfo.InvariantCulture;
                     if (spl.Length == 2)
                     {
-                        value = spl[1];
+                        publicAddress = spl[1];
                     }
                     else
                     {
@@ -133,7 +174,7 @@ namespace P4_TestCollar
 
         public string toString()
         {
-            return "Mac = " + value;
+            return "Mac = " + publicAddress + " connected : " + connected;
         }
     }
 }

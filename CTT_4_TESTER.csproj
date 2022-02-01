@@ -59,9 +59,11 @@
   <ItemGroup>
     <Compile Include="Battery.cs" />
     <Compile Include="bb_api.cs" />
+    <Compile Include="Ble.cs" />
     <Compile Include="Buzzer.cs" />
     <Compile Include="Charge.cs" />
     <Compile Include="Fk.cs" />
+    <Compile Include="Mac.cs" />
     <Compile Include="MsSerialPort.cs" />
     <Compile Include="P4CttTestForm.cs">
       <SubType>Form</SubType>

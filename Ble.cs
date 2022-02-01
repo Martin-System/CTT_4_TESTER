@@ -6,7 +6,7 @@ using System.Threading;
 using System.Text.RegularExpressions;
 using System.Globalization;
 
-namespace P4_TestCollar
+namespace CTT_4_TESTER
 {
     class Ble
     {

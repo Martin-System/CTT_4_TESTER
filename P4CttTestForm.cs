@@ -35,6 +35,7 @@ namespace CTT_4_TESTER
         float[] dataX = null;
         float[] dataY = null;
 
+        string MacAddress;
 
         public P4CttTestForm()
         {
@@ -1032,6 +1033,19 @@ namespace CTT_4_TESTER
             sBuzzer = new Buzzer(msSerialPortToCheck, 0);
             SetText(textBoxLog, "BUZZER " + sBuzzer.toString() + "\r\n");
             SetLabel(labelStatus, "BUZZER OK");
+        }
+
+        private void buttonGetMac_Click(object sender, EventArgs e)
+        {
+            Mac sMac = new Mac(msSerialPortToCheck);
+            SetText(textBoxLog, "Mac " + sMac.toString() + "\r\n");
+            MacAddress = sMac.publicAddress;
+        }
+
+        private void buttonBleConnect_Click(object sender, EventArgs e)
+        {
+            Mac sMac = new Mac(msSerialPortGolden,MacAddress);
+            SetText(textBoxLog, "Mac " + sMac.toString() + "\r\n");
         }
     }
 }

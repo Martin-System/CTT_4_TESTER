@@ -81,6 +81,8 @@
             this.buttonBuzzer = new System.Windows.Forms.Button();
             this.instantDoCtrl1 = new Automation.BDaq.InstantDoCtrl(this.components);
             this.instantAiCtrl1 = new Automation.BDaq.InstantAiCtrl(this.components);
+            this.buttonGetMac = new System.Windows.Forms.Button();
+            this.buttonBleConnect = new System.Windows.Forms.Button();
             this.groupBoxSwitch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartSpectrum)).BeginInit();
             this.SuspendLayout();
@@ -545,11 +547,33 @@
             // 
             this.instantAiCtrl1._StateStream = ((Automation.BDaq.DeviceStateStreamer)(resources.GetObject("instantAiCtrl1._StateStream")));
             // 
+            // buttonGetMac
+            // 
+            this.buttonGetMac.Location = new System.Drawing.Point(759, 416);
+            this.buttonGetMac.Name = "buttonGetMac";
+            this.buttonGetMac.Size = new System.Drawing.Size(75, 23);
+            this.buttonGetMac.TabIndex = 119;
+            this.buttonGetMac.Text = "GetMac";
+            this.buttonGetMac.UseVisualStyleBackColor = true;
+            this.buttonGetMac.Click += new System.EventHandler(this.buttonGetMac_Click);
+            // 
+            // buttonBleConnect
+            // 
+            this.buttonBleConnect.Location = new System.Drawing.Point(759, 445);
+            this.buttonBleConnect.Name = "buttonBleConnect";
+            this.buttonBleConnect.Size = new System.Drawing.Size(75, 23);
+            this.buttonBleConnect.TabIndex = 120;
+            this.buttonBleConnect.Text = "Ble Connect";
+            this.buttonBleConnect.UseVisualStyleBackColor = true;
+            this.buttonBleConnect.Click += new System.EventHandler(this.buttonBleConnect_Click);
+            // 
             // P4CttTestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1036, 727);
+            this.Controls.Add(this.buttonBleConnect);
+            this.Controls.Add(this.buttonGetMac);
             this.Controls.Add(this.buttonBuzzer);
             this.Controls.Add(this.buttonVib);
             this.Controls.Add(this.buttonFk);
@@ -649,6 +673,8 @@
         private System.Windows.Forms.Button buttonBuzzer;
         private Automation.BDaq.InstantDoCtrl instantDoCtrl1;
         private Automation.BDaq.InstantAiCtrl instantAiCtrl1;
+        private System.Windows.Forms.Button buttonGetMac;
+        private System.Windows.Forms.Button buttonBleConnect;
     }
 }
 
