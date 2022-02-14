@@ -90,7 +90,7 @@
             // 
             // buttonWpc
             // 
-            this.buttonWpc.Location = new System.Drawing.Point(1372, 302);
+            this.buttonWpc.Location = new System.Drawing.Point(981, 357);
             this.buttonWpc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonWpc.Name = "buttonWpc";
             this.buttonWpc.Size = new System.Drawing.Size(112, 35);
@@ -300,7 +300,7 @@
             // 
             this.labelStatus.AutoSize = true;
             this.labelStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelStatus.Location = new System.Drawing.Point(13, 781);
+            this.labelStatus.Location = new System.Drawing.Point(13, 594);
             this.labelStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelStatus.Name = "labelStatus";
             this.labelStatus.Size = new System.Drawing.Size(136, 22);
@@ -309,7 +309,7 @@
             // 
             // textBoxLog
             // 
-            this.textBoxLog.Location = new System.Drawing.Point(376, 537);
+            this.textBoxLog.Location = new System.Drawing.Point(373, 349);
             this.textBoxLog.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxLog.Multiline = true;
             this.textBoxLog.Name = "textBoxLog";
@@ -319,7 +319,7 @@
             // 
             // textBoxUartLog
             // 
-            this.textBoxUartLog.Location = new System.Drawing.Point(10, 537);
+            this.textBoxUartLog.Location = new System.Drawing.Point(10, 350);
             this.textBoxUartLog.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxUartLog.Multiline = true;
             this.textBoxUartLog.Name = "textBoxUartLog";
@@ -354,7 +354,7 @@
             // 
             // buttonUSB
             // 
-            this.buttonUSB.Location = new System.Drawing.Point(1372, 346);
+            this.buttonUSB.Location = new System.Drawing.Point(981, 392);
             this.buttonUSB.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonUSB.Name = "buttonUSB";
             this.buttonUSB.Size = new System.Drawing.Size(112, 35);
@@ -365,7 +365,7 @@
             // 
             // buttonADC
             // 
-            this.buttonADC.Location = new System.Drawing.Point(1372, 391);
+            this.buttonADC.Location = new System.Drawing.Point(981, 321);
             this.buttonADC.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonADC.Name = "buttonADC";
             this.buttonADC.Size = new System.Drawing.Size(112, 35);
@@ -376,7 +376,7 @@
             // 
             // buttonProgram
             // 
-            this.buttonProgram.Location = new System.Drawing.Point(1372, 437);
+            this.buttonProgram.Location = new System.Drawing.Point(981, 286);
             this.buttonProgram.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonProgram.Name = "buttonProgram";
             this.buttonProgram.Size = new System.Drawing.Size(112, 35);
@@ -387,7 +387,7 @@
             // 
             // buttonTenma
             // 
-            this.buttonTenma.Location = new System.Drawing.Point(1372, 482);
+            this.buttonTenma.Location = new System.Drawing.Point(981, 249);
             this.buttonTenma.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonTenma.Name = "buttonTenma";
             this.buttonTenma.Size = new System.Drawing.Size(112, 35);
@@ -398,7 +398,7 @@
             // 
             // buttonCharge
             // 
-            this.buttonCharge.Location = new System.Drawing.Point(1372, 526);
+            this.buttonCharge.Location = new System.Drawing.Point(981, 428);
             this.buttonCharge.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonCharge.Name = "buttonCharge";
             this.buttonCharge.Size = new System.Drawing.Size(112, 35);
@@ -409,7 +409,7 @@
             // 
             // buttonSwitch
             // 
-            this.buttonSwitch.Location = new System.Drawing.Point(1372, 571);
+            this.buttonSwitch.Location = new System.Drawing.Point(981, 463);
             this.buttonSwitch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonSwitch.Name = "buttonSwitch";
             this.buttonSwitch.Size = new System.Drawing.Size(112, 35);
@@ -428,7 +428,7 @@
             this.groupBoxSwitch.Controls.Add(this.checkBox2A);
             this.groupBoxSwitch.Controls.Add(this.checkBox1B);
             this.groupBoxSwitch.Controls.Add(this.checkBox1A);
-            this.groupBoxSwitch.Location = new System.Drawing.Point(1138, 309);
+            this.groupBoxSwitch.Location = new System.Drawing.Point(758, 249);
             this.groupBoxSwitch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBoxSwitch.Name = "groupBoxSwitch";
             this.groupBoxSwitch.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -529,7 +529,7 @@
             this.chartSpectrum.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chartSpectrum.Legends.Add(legend1);
-            this.chartSpectrum.Location = new System.Drawing.Point(10, 843);
+            this.chartSpectrum.Location = new System.Drawing.Point(11, 621);
             this.chartSpectrum.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chartSpectrum.Name = "chartSpectrum";
             series1.ChartArea = "ChartArea";
@@ -538,13 +538,13 @@
             series1.Legend = "Legend1";
             series1.Name = "SeriesSpectrum";
             this.chartSpectrum.Series.Add(series1);
-            this.chartSpectrum.Size = new System.Drawing.Size(1530, 283);
+            this.chartSpectrum.Size = new System.Drawing.Size(1202, 283);
             this.chartSpectrum.TabIndex = 114;
             this.chartSpectrum.Text = "chart1";
             // 
             // buttonSxTx
             // 
-            this.buttonSxTx.Location = new System.Drawing.Point(1372, 615);
+            this.buttonSxTx.Location = new System.Drawing.Point(981, 498);
             this.buttonSxTx.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonSxTx.Name = "buttonSxTx";
             this.buttonSxTx.Size = new System.Drawing.Size(112, 35);
@@ -555,7 +555,7 @@
             // 
             // buttonFk
             // 
-            this.buttonFk.Location = new System.Drawing.Point(1372, 660);
+            this.buttonFk.Location = new System.Drawing.Point(1101, 249);
             this.buttonFk.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonFk.Name = "buttonFk";
             this.buttonFk.Size = new System.Drawing.Size(112, 35);
@@ -566,7 +566,7 @@
             // 
             // buttonVib
             // 
-            this.buttonVib.Location = new System.Drawing.Point(1372, 705);
+            this.buttonVib.Location = new System.Drawing.Point(1101, 286);
             this.buttonVib.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonVib.Name = "buttonVib";
             this.buttonVib.Size = new System.Drawing.Size(112, 35);
@@ -577,7 +577,7 @@
             // 
             // buttonBuzzer
             // 
-            this.buttonBuzzer.Location = new System.Drawing.Point(1372, 749);
+            this.buttonBuzzer.Location = new System.Drawing.Point(1101, 321);
             this.buttonBuzzer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonBuzzer.Name = "buttonBuzzer";
             this.buttonBuzzer.Size = new System.Drawing.Size(112, 35);
@@ -588,7 +588,7 @@
             // 
             // buttonGetMac
             // 
-            this.buttonGetMac.Location = new System.Drawing.Point(1138, 640);
+            this.buttonGetMac.Location = new System.Drawing.Point(1101, 357);
             this.buttonGetMac.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonGetMac.Name = "buttonGetMac";
             this.buttonGetMac.Size = new System.Drawing.Size(112, 35);
@@ -599,7 +599,7 @@
             // 
             // buttonBleConnect
             // 
-            this.buttonBleConnect.Location = new System.Drawing.Point(1138, 685);
+            this.buttonBleConnect.Location = new System.Drawing.Point(1101, 392);
             this.buttonBleConnect.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonBleConnect.Name = "buttonBleConnect";
             this.buttonBleConnect.Size = new System.Drawing.Size(112, 35);
@@ -630,7 +630,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1554, 1050);
+            this.ClientSize = new System.Drawing.Size(1257, 900);
             this.Controls.Add(this.buttonBleConnect);
             this.Controls.Add(this.buttonGetMac);
             this.Controls.Add(this.buttonBuzzer);

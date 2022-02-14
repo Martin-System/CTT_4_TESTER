@@ -25,7 +25,7 @@ namespace CTT_4_TESTER
 
         
 
-        int deviceNumber = 0;
+        int deviceNumber = 1;
         P4Relay p4Relay;
         P4Adc p4Adc;
 
