@@ -102,12 +102,10 @@ namespace CTT_4_TESTER
                 if (match.Contains("OK"))
                 {
                     error = "OK";
-                }
-                else
-                {
-                    throw new Exception("Error in the STR for MAC " + str);
+                    return;
                 }
             }
+            throw new Exception("Error in the STR for MAC " + str);
         }
 
         private void CheckString(string str)

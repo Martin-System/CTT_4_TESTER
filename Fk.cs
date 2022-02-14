@@ -44,6 +44,18 @@ namespace CTT_4_TESTER
                 Thread.Sleep(100);
             }
             rssiRxAvg /= 10;
+
+            while (1==1)
+            {
+                try
+                {
+                    ret = msSerialPort.uartReadStringAndContains("FK", ">");
+                }
+                catch (Exception exc)
+                {
+                    break;
+                }
+            }
         }
 
         private void CheckStringOk(string str)

@@ -45,8 +45,8 @@ namespace CTT_4_TESTER
             _serialPort.Handshake = Handshake.None;
 
             // Set the read/write timeouts
-            _serialPort.ReadTimeout = 4000;
-            _serialPort.WriteTimeout = 4000;
+            _serialPort.ReadTimeout = 2000;
+            _serialPort.WriteTimeout = 2000;
         }
 
         public bool Open(string portName)
