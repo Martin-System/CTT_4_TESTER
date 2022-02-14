@@ -83,6 +83,7 @@
             this.instantAiCtrl1 = new Automation.BDaq.InstantAiCtrl(this.components);
             this.buttonGetMac = new System.Windows.Forms.Button();
             this.buttonBleConnect = new System.Windows.Forms.Button();
+            this.buttonSN = new System.Windows.Forms.Button();
             this.groupBoxSwitch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartSpectrum)).BeginInit();
             this.SuspendLayout();
@@ -278,7 +279,7 @@
             // 
             this.labelStatus.AutoSize = true;
             this.labelStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelStatus.Location = new System.Drawing.Point(500, 298);
+            this.labelStatus.Location = new System.Drawing.Point(18, 284);
             this.labelStatus.Name = "labelStatus";
             this.labelStatus.Size = new System.Drawing.Size(204, 31);
             this.labelStatus.TabIndex = 85;
@@ -567,11 +568,22 @@
             this.buttonBleConnect.UseVisualStyleBackColor = true;
             this.buttonBleConnect.Click += new System.EventHandler(this.buttonBleConnect_Click);
             // 
+            // buttonSN
+            // 
+            this.buttonSN.Location = new System.Drawing.Point(759, 474);
+            this.buttonSN.Name = "buttonSN";
+            this.buttonSN.Size = new System.Drawing.Size(75, 23);
+            this.buttonSN.TabIndex = 121;
+            this.buttonSN.Text = "SN";
+            this.buttonSN.UseVisualStyleBackColor = true;
+            this.buttonSN.Click += new System.EventHandler(this.buttonSN_Click);
+            // 
             // P4CttTestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1036, 727);
+            this.Controls.Add(this.buttonSN);
             this.Controls.Add(this.buttonBleConnect);
             this.Controls.Add(this.buttonGetMac);
             this.Controls.Add(this.buttonBuzzer);
@@ -675,6 +687,7 @@
         private Automation.BDaq.InstantAiCtrl instantAiCtrl1;
         private System.Windows.Forms.Button buttonGetMac;
         private System.Windows.Forms.Button buttonBleConnect;
+        private System.Windows.Forms.Button buttonSN;
     }
 }
 

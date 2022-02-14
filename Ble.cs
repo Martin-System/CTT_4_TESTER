@@ -52,7 +52,7 @@ namespace CTT_4_TESTER
             }
             valueAvg /= 10;
 
-            if(valueAvg<-70) throw new Exception("Error RSSI BLE");
+            if(valueAvg<-70) throw new Exception("Error RSSI BLE "+ valueAvg);
 
         }
 
@@ -73,12 +73,11 @@ namespace CTT_4_TESTER
                 if (match.Contains("OK"))
                 {
                     error = "OK";
+                    return;
                 }
-                else
-                {
-                    throw new Exception("Error in the STR for MAC " + str);
-                }
+                
             }
+            throw new Exception("Error in the STR for MAC " + str);
         }
 
         private void CheckString(string str)

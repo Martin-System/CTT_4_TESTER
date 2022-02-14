@@ -36,6 +36,7 @@ namespace CTT_4_TESTER
         float[] dataY = null;
 
         string MacAddress;
+        int serialNumber;
 
         public P4CttTestForm()
         {
@@ -605,6 +606,7 @@ namespace CTT_4_TESTER
             else
             {
                 SetLabel(labelStatus, "Serial OK :" + serial);
+                this.serialNumber = serial;
                 UI_enableStart();
             }
         }
@@ -721,6 +723,8 @@ namespace CTT_4_TESTER
                     return;
                 }
 
+                SetLabel(labelStatus, "Carrier Freq OK");
+
                 /********************************/
                 //  Check SX : TX and RX RSSI
                 /********************************/
@@ -785,6 +789,9 @@ namespace CTT_4_TESTER
                     SetText(textBoxLog, "test charge OK " + Charge.Charging.NO_OP + "\r\n");
                 p4Relay.setStandby();
 
+
+                SetLabel(labelStatus, "Charge OK");
+
                 Thread.Sleep(1000);
 
 
@@ -802,6 +809,24 @@ namespace CTT_4_TESTER
                     e.Result = " FK RSSI not correct";
                     return;
                 }
+
+                SetLabel(labelStatus, "Finger Kick OK");
+
+                /********************************/
+                //Test Bluetooth 
+                /********************************/
+
+                Mac sMacDut = new Mac(msSerialPortToCheck);
+                SetText(textBoxLog, "Mac " + sMacDut.toString() + "\r\n");
+                MacAddress = sMacDut.publicAddress;
+                //connection to Golden to launch the test
+                Mac sMac = new Mac(msSerialPortGolden, MacAddress);
+                SetText(textBoxLog, "Mac " + sMac.toString() + "\r\n");
+                Ble sBle = new Ble(msSerialPortGolden);
+                SetText(textBoxLog, "Ble " + sBle.toString() + "\r\n");
+
+
+                SetLabel(labelStatus, "BLE RSSI OK");
 
                 /********************************/
                 //Test BUZZER
@@ -846,6 +871,16 @@ namespace CTT_4_TESTER
                 sVib = new Vibration(msSerialPortToCheck, 0);
                 SetText(textBoxLog, "VIBRATION " + sVib.toString() + "\r\n");
                 SetLabel(labelStatus, "VIBRATION OK");
+
+                /********************************/
+                //Set Serial Number
+                /********************************/
+
+                Sn sn = new Sn(msSerialPortToCheck, this.serialNumber);
+                SetText(textBoxLog, "Sn " + sn.toString() + "\r\n");
+
+
+                SetLabel(labelStatus, "Radio RSSI OK");
             }
             catch (Exception exc)
             {
@@ -861,7 +896,8 @@ namespace CTT_4_TESTER
         {
             if (e.Result != null)
             {
-                SetLabel(labelStatus, (string)e.Result + "\r\nChange SN to enabled a new test");
+                SetText(textBoxLog, "error " + (string)e.Result + "\r\n");
+                SetLabel(labelStatus, "Change SN to enabled a new test");
                 //ResetButton();
 
             }
@@ -986,6 +1022,8 @@ namespace CTT_4_TESTER
         private void buttonFk_Click(object sender, EventArgs e)
         {
             QuestionToUser("Press OK and use the Finger Kick");
+            tenma.On();
+            PushButton pushButton = new PushButton(msSerialPortToCheck);
 
             Fk fk = new Fk(msSerialPortToCheck);
             if (fk.IsRssiOk())
@@ -1048,6 +1086,12 @@ namespace CTT_4_TESTER
             SetText(textBoxLog, "Mac " + sMac.toString() + "\r\n");
             Ble sBle = new Ble(msSerialPortGolden);
             SetText(textBoxLog, "Ble " + sBle.toString() + "\r\n");
+        }
+
+        private void buttonSN_Click(object sender, EventArgs e)
+        {
+            Sn sn = new Sn(msSerialPortToCheck, this.serialNumber);
+            SetText(textBoxLog, "Sn " + sn.toString() + "\r\n");
         }
     }
 }

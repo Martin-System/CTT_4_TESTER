@@ -78,6 +78,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PushButton.cs" />
     <Compile Include="sa_api.cs" />
+    <Compile Include="Sn.cs" />
     <Compile Include="spectrum.cs" />
     <Compile Include="Sx.cs" />
     <Compile Include="Tenma.cs" />
@@ -107,6 +108,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
