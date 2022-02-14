@@ -79,11 +79,11 @@
             this.buttonFk = new System.Windows.Forms.Button();
             this.buttonVib = new System.Windows.Forms.Button();
             this.buttonBuzzer = new System.Windows.Forms.Button();
-            this.instantDoCtrl1 = new Automation.BDaq.InstantDoCtrl(this.components);
-            this.instantAiCtrl1 = new Automation.BDaq.InstantAiCtrl(this.components);
             this.buttonGetMac = new System.Windows.Forms.Button();
             this.buttonBleConnect = new System.Windows.Forms.Button();
             this.buttonSN = new System.Windows.Forms.Button();
+            this.instantAiCtrl1 = new Automation.BDaq.InstantAiCtrl(this.components);
+            this.instantDoCtrl1 = new Automation.BDaq.InstantDoCtrl(this.components);
             this.groupBoxSwitch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartSpectrum)).BeginInit();
             this.SuspendLayout();
@@ -540,14 +540,6 @@
             this.buttonBuzzer.UseVisualStyleBackColor = true;
             this.buttonBuzzer.Click += new System.EventHandler(this.buttonBuzzer_Click);
             // 
-            // instantDoCtrl1
-            // 
-            this.instantDoCtrl1._StateStream = ((Automation.BDaq.DeviceStateStreamer)(resources.GetObject("instantDoCtrl1._StateStream")));
-            // 
-            // instantAiCtrl1
-            // 
-            this.instantAiCtrl1._StateStream = ((Automation.BDaq.DeviceStateStreamer)(resources.GetObject("instantAiCtrl1._StateStream")));
-            // 
             // buttonGetMac
             // 
             this.buttonGetMac.Location = new System.Drawing.Point(759, 416);
@@ -577,6 +569,14 @@
             this.buttonSN.Text = "SN";
             this.buttonSN.UseVisualStyleBackColor = true;
             this.buttonSN.Click += new System.EventHandler(this.buttonSN_Click);
+            // 
+            // instantAiCtrl1
+            // 
+            this.instantAiCtrl1._StateStream = ((Automation.BDaq.DeviceStateStreamer)(resources.GetObject("instantAiCtrl1._StateStream")));
+            // 
+            // instantDoCtrl1
+            // 
+            this.instantDoCtrl1._StateStream = ((Automation.BDaq.DeviceStateStreamer)(resources.GetObject("instantDoCtrl1._StateStream")));
             // 
             // P4CttTestForm
             // 
@@ -683,11 +683,11 @@
         private System.Windows.Forms.Button buttonFk;
         private System.Windows.Forms.Button buttonVib;
         private System.Windows.Forms.Button buttonBuzzer;
-        private Automation.BDaq.InstantDoCtrl instantDoCtrl1;
-        private Automation.BDaq.InstantAiCtrl instantAiCtrl1;
         private System.Windows.Forms.Button buttonGetMac;
         private System.Windows.Forms.Button buttonBleConnect;
         private System.Windows.Forms.Button buttonSN;
+        private Automation.BDaq.InstantAiCtrl instantAiCtrl1;
+        private Automation.BDaq.InstantDoCtrl instantDoCtrl1;
     }
 }
 
