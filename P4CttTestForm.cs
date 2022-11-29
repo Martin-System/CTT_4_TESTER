@@ -25,7 +25,7 @@ namespace CTT_4_TESTER
 
         
 
-        int deviceNumber = 1;
+        int deviceNumber = 0;
         P4Relay p4Relay;
         P4Adc p4Adc;
 
@@ -941,7 +941,6 @@ namespace CTT_4_TESTER
         private void buttonADC_Click(object sender, EventArgs e)
         {
             p4Adc.startAdc();
-
         }
 
         private void buttonStart_Click(object sender, EventArgs e)
