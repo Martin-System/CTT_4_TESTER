@@ -817,11 +817,11 @@ namespace CTT_4_TESTER
                 /********************************/
 
                 Mac sMacDut = new Mac(msSerialPortToCheck);
-                SetText(textBoxLog, "Mac " + sMacDut.toString() + "\r\n");
+                SetText(textBoxLog, "Mac DUT" + sMacDut.toString() + "\r\n");
                 MacAddress = sMacDut.publicAddress;
                 //connection to Golden to launch the test
                 Mac sMac = new Mac(msSerialPortGolden, MacAddress);
-                SetText(textBoxLog, "Mac " + sMac.toString() + "\r\n");
+                SetText(textBoxLog, "Mac GOLDEN" + sMac.toString() + "\r\n");
                 Ble sBle = new Ble(msSerialPortGolden);
                 SetText(textBoxLog, "Ble " + sBle.toString() + "\r\n");
 

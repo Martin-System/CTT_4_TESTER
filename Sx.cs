@@ -193,7 +193,7 @@ namespace CTT_4_TESTER
 
         public bool IsRssiOk()
         {
-            if (rssiRxAvg > -55 && rssiTxAvg > -55)
+            if (rssiRxAvg > -65 && rssiTxAvg > -65)
             {
                 return true;
             }

@@ -52,7 +52,7 @@ namespace CTT_4_TESTER
             }
             valueAvg /= 10;
 
-            if(valueAvg<-70) throw new Exception("Error RSSI BLE "+ valueAvg);
+            if(valueAvg<-90) throw new Exception("Error RSSI BLE "+ valueAvg);
 
         }
 

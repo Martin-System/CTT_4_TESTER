@@ -19,7 +19,7 @@ namespace CTT_4_TESTER
 
         public Spectrum()
         {
-            initBB();
+            initSA();
         }
 
         private void initBB()
@@ -134,7 +134,7 @@ namespace CTT_4_TESTER
         }
         public void GetPeakSpectrum(ref double freqCenterMHz, ref double? peakCenter_dBm, ref float[] freq, ref float[] sweepMax)
         {
-            GetPeakSpectrumBB(ref freqCenterMHz, ref peakCenter_dBm, ref freq, ref sweepMax);
+            GetPeakSpectrumSA(ref freqCenterMHz, ref peakCenter_dBm, ref freq, ref sweepMax);
         }
 
 
