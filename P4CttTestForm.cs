@@ -566,6 +566,24 @@ namespace CTT_4_TESTER
             return ret;
         }
 
+        private bool QuestionToUserRetry(string textToDispaly)
+        {
+            bool ret = true;
+            string message = textToDispaly;
+            const string caption = "Tester check";
+            var result = MessageBox.Show(message, caption,
+                                         MessageBoxButtons.RetryCancel,
+                                         MessageBoxIcon.Question);
+
+            // If the no button was pressed ...
+            if (result == DialogResult.Cancel)
+            {
+                ret = false;
+            }
+
+            return ret;
+        }
+
         /***************************************************/
         //SERIAL Number modified
         /***************************************************/
@@ -639,7 +657,7 @@ namespace CTT_4_TESTER
                 }
 
                 /********************************/
-                    //Programm the board
+                //Programm the board
                 /********************************/
 
                 if (!skipStep)
@@ -649,7 +667,7 @@ namespace CTT_4_TESTER
                 }
 
                 /********************************/
-                    //Check Version 
+                //Check Version 
                 /********************************/
                 Version sVersion = new Version(msSerialPortToCheck);
                 SetText(textBoxLog, "Version : " + sVersion.toString() + "\r\n");
@@ -688,42 +706,57 @@ namespace CTT_4_TESTER
                 //  Check SX Carrier Wave
                 /********************************/
 
+                bool testCarrier = true;
+
+
                 Sx.CMD sxCmd = Sx.CMD.START_CW;
-
-                //UI_enableCw();
-                SetLabel(labelStatus, "Must centered the central frequency");
-                dataY = null;
-                dataX = null;
-                Sx sSx = new Sx(msSerialPortToCheck, sxCmd);
-                SetText(textBoxLog, "SxCarrier " + sSx.toString() + "\r\n");
-                Thread.Sleep(100);
-                double freqCenterMHz = 0;
-                double? peakCenter_dBm = null;
-                spectrum.GetPeakSpectrum(ref freqCenterMHz, ref peakCenter_dBm, ref dataX, ref dataY);
-                SetChartData(chartSpectrum, dataX, dataY);
-                sSx = new Sx(msSerialPortToCheck, freqCenterMHz);
-                Thread.Sleep(100);
-
-                spectrum.GetPeakSpectrum(ref freqCenterMHz, ref peakCenter_dBm, ref dataX, ref dataY);
-                SetChartData(chartSpectrum, dataX, dataY);
-                sSx = new Sx(msSerialPortToCheck, freqCenterMHz);
-                Thread.Sleep(100);
-
-                spectrum.GetPeakSpectrum(ref freqCenterMHz, ref peakCenter_dBm, ref dataX, ref dataY);
-                SetChartData(chartSpectrum, dataX, dataY);
-
-                if (QuestionToUser("Is Peak central?") == true)
+                Sx sSx;
+                while (testCarrier)
                 {
-                    SetText(textBoxLog, "RF Calibration OK");
-                }
-                else
-                {
-                    SetText(textBoxLog, "RF Calibration NOK");
-                    e.Result = "Error RF - Check PCB and restart test";
-                    return;
+                    //UI_enableCw();
+                    SetLabel(labelStatus, "Must centered the central frequency");
+                    dataY = null;
+                    dataX = null;
+                    sSx = new Sx(msSerialPortToCheck, sxCmd);
+                    SetText(textBoxLog, "SxCarrier " + sSx.toString() + "\r\n");
+                    Thread.Sleep(100);
+                    double freqCenterMHz = 0;
+                    double? peakCenter_dBm = null;
+                    spectrum.GetPeakSpectrum(ref freqCenterMHz, ref peakCenter_dBm, ref dataX, ref dataY);
+                    SetChartData(chartSpectrum, dataX, dataY);
+                    sSx = new Sx(msSerialPortToCheck, freqCenterMHz);
+                    Thread.Sleep(100);
+
+                    spectrum.GetPeakSpectrum(ref freqCenterMHz, ref peakCenter_dBm, ref dataX, ref dataY);
+                    SetChartData(chartSpectrum, dataX, dataY);
+                    sSx = new Sx(msSerialPortToCheck, freqCenterMHz);
+                    Thread.Sleep(100);
+
+                    spectrum.GetPeakSpectrum(ref freqCenterMHz, ref peakCenter_dBm, ref dataX, ref dataY);
+                    SetChartData(chartSpectrum, dataX, dataY);
+
+                    if (QuestionToUser("Is Peak central?") == true)
+                    {
+                        SetText(textBoxLog, "RF Calibration OK");
+                    
+                        testCarrier = false;
+                    }
+                    else
+                    {
+                        if (QuestionToUserRetry("Do you want to retry") == true)
+                        {
+
+                        }
+                        else
+                        {
+                            SetText(textBoxLog, "RF Calibration NOK");
+                            e.Result = "Error RF - Check PCB and restart test";
+                            return;
+                        }
+                    }
                 }
 
-                SetLabel(labelStatus, "Carrier Freq OK");
+            SetLabel(labelStatus, "Carrier Freq OK");
 
                 /********************************/
                 //  Check SX : TX and RX RSSI
