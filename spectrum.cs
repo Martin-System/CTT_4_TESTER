@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,29 +15,78 @@ namespace CTT_4_TESTER
         double binSize = 0.0;
         double startFreq = 0.0;
         int id = -1;
-
+        bool isBB = false;
+        bool isSA = false;
 
         public Spectrum()
         {
-            initSA();
+            isBB = false;
+            isSA = false;
+
+            if (openSA())
+            {
+                isSA = true;
+            }
+            else if (openBB())
+            {
+                isBB = true;
+            }
+
+            if (isBB) initBB();
+            else if (isSA) initSA();
+
+            else if (isBB==false && isSA==false) throw new Exception("Error: Unable to open SPECTRUM");
+
         }
 
-        private void initBB()
+        private bool openBB()
         {
+            bool ret=false;
             bbStatus status = bbStatus.bbNoError;
 
-            Console.Write("Opening Device, Please Wait\n");
+            Console.Write("Opening spectrum BB, Please Wait\n");
             status = bb_api.bbOpenDevice(ref id);
             if (status != bbStatus.bbNoError)
             {
                 Console.Write("Error: Unable to open BB60\n");
                 Console.Write(bb_api.bbGetStatusString(status) + "\n");
-                throw new Exception("Error: Unable to open SPECTRUM");
+                //throw new Exception("Error: Unable to open SPECTRUM");
+                ret = false;
             }
             else
             {
-                Console.Write("Device Found\n\n");
+                Console.Write("Spectrum BB Found\n\n");
+                ret = true;
             }
+
+            return ret;
+        }
+
+        private bool openSA()
+        {
+            int[] serials = new int[8];
+            int deviceCount = 0;
+            saStatus status = sa_api.saGetSerialNumberList(serials, ref deviceCount);
+            if (deviceCount < 1)
+            {
+                Console.WriteLine("No spectrum SA found");
+                return false;
+            }
+
+            status = sa_api.saOpenDeviceBySerialNumber(ref id, serials[0]);
+            if (status < 0)
+            {
+                Console.WriteLine("saOpenDevice error: " + sa_api.saGetStatusString(status));
+                return false;
+            }
+
+            return true;
+        }
+
+        private void initBB()
+        {
+
+            bbStatus status = bbStatus.bbNoError;
 
             Console.Write("API Version: " + bb_api.bbGetAPIString() + "\n");
             Console.Write("Device Type: " + bb_api.bbGetDeviceName(id) + "\n");
@@ -79,23 +128,7 @@ namespace CTT_4_TESTER
 
         private void initSA()
         {
-
-            int[] serials = new int[8];
-            int deviceCount = 0;
-
-            saStatus status = sa_api.saGetSerialNumberList(serials, ref deviceCount);
-            if (deviceCount < 1)
-            {
-                Console.WriteLine("No devices found");
-                return;
-            }
-
-            status = sa_api.saOpenDeviceBySerialNumber(ref id, serials[0]);
-            if (status < 0)
-            {
-                Console.WriteLine("saOpenDevice error: " + sa_api.saGetStatusString(status));
-                return;
-            }
+            saStatus status;
 
             // Print off information about device
             saDeviceType deviceType = saDeviceType.saDeviceTypeSA44;
@@ -134,7 +167,11 @@ namespace CTT_4_TESTER
         }
         public void GetPeakSpectrum(ref double freqCenterMHz, ref double? peakCenter_dBm, ref float[] freq, ref float[] sweepMax)
         {
-            GetPeakSpectrumSA(ref freqCenterMHz, ref peakCenter_dBm, ref freq, ref sweepMax);
+            if (isBB) GetPeakSpectrumBB(ref freqCenterMHz, ref peakCenter_dBm, ref freq, ref sweepMax);
+            else if (isSA) GetPeakSpectrumSA(ref freqCenterMHz, ref peakCenter_dBm, ref freq, ref sweepMax);
+
+            else if (isBB == false && isSA == false) throw new Exception("Error: No Spectrum open");
+          
         }
 
 
